@@ -140,10 +140,11 @@
     </div>
   </body>
   <script charset="UTF-8" src="joydiv.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+  <script src="socket.io.js"></script>
   <script type="text/javascript">
 
     var sock = io("http://192.168.2.92:8013");
+    // Add prompt for ip j2dx server ip and port later?
 
     function send_input(key, value){
       sock.emit('input', {"key" : key, "value" : value})
