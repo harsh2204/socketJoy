@@ -146,18 +146,15 @@
     var sock = io("http://192.168.2.92:8013");
 
     function send_input(key, value){
-      // Turn the following into a function to attach evenlisteners to multiple dom elements
       sock.emit('input', {"key" : key, "value" : value})
     }
     function createButton(id){
       var button = document.getElementById(id);
       button.addEventListener('touchstart', function(e){
-        // emit sock value for button 1
         send_input(id, 1)
         e.preventdefault();
       }, false)
       button.addEventListener('touchend', function(e){
-        // emit sock value for button 0
         send_input(id, 0)
         e.preventdefault();
       }, false)
