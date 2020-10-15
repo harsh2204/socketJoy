@@ -195,10 +195,9 @@
     });
     // DPAD Reset
     dpad.addEventListener('touchend', function(e){
-        var dirs = ['up', 'down', 'left', 'right'];
-        for (d of dirs){
-          dpad_down[d] = 0;
-          send_input(d+"-button", 0)
+        for (var key in dpad_down){
+          dpad_down[key] = 0;
+          send_input(key+"-button", 0);
         }
     });
 
