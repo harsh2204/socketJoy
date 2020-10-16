@@ -112,3 +112,30 @@
 #dpad .joydiv-trackpad{
   background-color: gray;
 }
+
+#joystick2 {
+  width: 150px;
+  height: 150px;
+  margin: 0px;
+  top: 60%;
+}
+
+#joystick2 .joydiv-trackpad{
+  /* font-size: 200px; */
+  border-radius: 50%;
+}
+#joystick2 .joydiv-tracker{
+  font-size: 150px;
+}
+#joystick2 .joydiv-up{
+  font-size: 0px;
+}
+#joystick2 .joydiv-down{
+  font-size: 0px;
+}
+#joystick2 .joydiv-left{
+  font-size: 0px;
+}
+#joystick2 .joydiv-right{
+  font-size: 0px;
+}

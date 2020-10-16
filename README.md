@@ -12,9 +12,9 @@ This project relies on work done by @qbolec with [joydiv](https://github.com/qbo
 
 **Button/Command**|** Status**
 :-----:|:-----:
-main-button| ❎
-back-button|❎
-start-button|❎
+main-button|✅
+back-button|✅
+start-button|✅
 left-stick-press|❎
 right-stick-press|❎
 left-bumper|❎
