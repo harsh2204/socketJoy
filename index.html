@@ -11,21 +11,22 @@
         -webkit-text-size-adjust:none; 
         height: 100%;
         width: 100%;
+        padding: 0;
       }
       body{
-          border: 1px solid black;
           margin: 0;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
+          background-color: gray;
           overflow: hidden;
       }
       .container {
-        background-color:#2E42C2;
+        background-color: gray;
         display: flex;
         /* align-items: center; */
         justify-content: center;
-        border: 1px solid salmon;
-        width: 100%;
+        /* border:1px solid coral; */
+        width: 100vw;
         height: 100%;
       }
       #joystick1{
@@ -46,15 +47,17 @@
         width : 100px;
         height: 100px;
         font-size: 100px;
-        background-color:gray;
+        /* background-color: burlywood; */
         top: 65%;
         margin: 10px;
+        opacity: 0.5;
       }
+      /* XBOX buttons */
       .button-container{
         position: relative;
         width : 200px;
         height: 200px;
-        top : 40%;
+        top : 50%;
       }
       .button {
         border: solid 1px #ecf0f1;
@@ -153,11 +156,11 @@
       var button = document.getElementById(id);
       button.addEventListener('touchstart', function(e){
         send_input(id, 1)
-        e.preventdefault();
+        e.preventDefault();
       }, false)
       button.addEventListener('touchend', function(e){
         send_input(id, 0)
-        e.preventdefault();
+        e.preventDefault();
       }, false)
     }
     // Buttons
