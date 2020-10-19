@@ -1,4 +1,4 @@
- var sock = io("http://192.168.2.92:8013");
+ var sock = io("http://192.168.2.92:8013"); // Change your ip here
   // Add prompt for ip j2dx server ip and port later?
 
   function send_input(key, value) {

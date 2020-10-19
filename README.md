@@ -7,6 +7,15 @@ This project relies on work done by @qbolec with [joydiv](https://github.com/qbo
 
 **NOTE**: This project is WIP, however as it stands right now you can serve the index.html, connect to it on your local network using your device and have the controller running with limited functionality as stated in the implementation status section. Run the j2dx server and add the local address to the CORS allowed list to get the virtual controller up and running.
 
+### Steps to get this up and running:
+
+* install j2dx plugin and set it up. See instuctions [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
+* edit socketjoy.js to open the socket at the local IP address of your machine on line.
+* run a j2dx instance by simply running `j2dx` or `j2dx -d` for debugging.
+* run `python -m http.server 8080` to serve the virtual controller front-end.
+* connect to your <local-ip-of-host>:8080 from your mobile device and start playing some games!
+
+--- 
 
 ### Implemenation Status
 
