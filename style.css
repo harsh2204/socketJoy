@@ -24,6 +24,15 @@ body {
   height: 100%;
   touch-action: none; /* Disable panning and zooming  */
 }
+.configure{
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  position: absolute;
+  padding: 0;
+  top: 5%;
+  right: 5%;
+}
 /* LEFT STICK */
 #joystick1 {
   width: 200px;
