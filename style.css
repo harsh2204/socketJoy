@@ -281,3 +281,21 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+#turn {
+  position: relative;
+  top: 50%;
+  text-align: center;
+  align-items: center;
+  color: antiquewhite;
+  background-color: firebrick;
+  font-size: 1.5em;
+}
+
+@media only screen and (orientation:portrait){
+  #turn{ display:block; }
+  .container{ display:none; }
+}
+@media only screen and (orientation:landscape){
+  #turn{ display:none; }
+  .container{ display:flex; }
+}
