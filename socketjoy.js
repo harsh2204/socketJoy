@@ -101,6 +101,40 @@ dpad.addEventListener("touchend", function (e) {
   }
 });
 
+// Triggers
+
+var tl = document.getElementById('left-trigger')
+
+var leftTrig = new JoydivModule.Trigger({
+  element: tl,
+  topHome: '10px',
+  clampY: 1,
+  positiveOnly:true,
+  flipY: true
+})
+
+tl.addEventListener('trigger-changed', function(e){
+  var tVal = leftTrig.getOneDirection().offset.y;
+  console.log("left trigger "+tVal)
+  sock.emit("input", { key: "left-trigger", value: tVal});
+});
+
+var tr = document.getElementById('right-trigger')
+
+var rightTrig= new JoydivModule.Trigger({
+  element: tr,
+  topHome: '10px',
+  clampY: 1,
+  positiveOnly:true,
+  flipY: true
+})
+
+tr.addEventListener('trigger-changed', function(e){
+  var tVal = rightTrig.getOneDirection().offset.y;
+  console.log("right trigger "+tVal)
+  sock.emit("input", { key: "right-trigger", value: tVal});
+});
+
 // Joysticks
 var j1 = document.getElementById("joystick1");
 var j2 = document.getElementById("joystick2");
