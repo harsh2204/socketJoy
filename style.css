@@ -300,3 +300,16 @@ body {
   #turn{ display:none; }
   .container{ display:flex; }
 }
+
+#demo {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 25vw;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+  font-size: 1.5em;
+  color:firebrick;
+  opacity: 50%;
+}
