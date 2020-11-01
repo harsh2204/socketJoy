@@ -45,6 +45,8 @@ createButton("main-button");
 createButton("back-button");
 createButton("start-button");
 
+createButton("left-bumper");
+createButton("right-bumper");
 // DPAD
 // Use JoyDiv with 8 direction input, and emit them accordingly. So instead of sending the x and y values, send button 0 or 1
 var dpad = document.getElementById("dpad");
