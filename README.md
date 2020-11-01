@@ -26,9 +26,9 @@ back-button|✅
 start-button|✅
 left-stick-press|❎
 right-stick-press|❎
-left-bumper|❎
+left-bumper|✅
 left-trigger|❎
-right-bumper|❎
+right-bumper|✅
 right-trigger|❎
 up-button|✅
 right-button|✅

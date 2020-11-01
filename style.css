@@ -291,6 +291,7 @@ body {
   font-size: 1.5em;
 }
 
+/* blessed from https://code-boxx.com/lock-screen-orientation/ */
 @media only screen and (orientation:portrait){
   #turn{ display:block; }
   .container{ display:none; }
