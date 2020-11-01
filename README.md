@@ -1,5 +1,7 @@
 ## SocketJoy
 
+**Note** : This project is currently only being tested on linux (and may not work on windows). Once the frontend implementation is done, I'll start testing on windows.
+
 Use your mobile phone as a virtual xbox controller for your windows or linux pc!
 
 This project relies on work done by @qbolec with [joydiv](https://github.com/qbolec/Joydiv) and the [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/) server written by @OzymandiasTheGreat, so huge thanks to them!

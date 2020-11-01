@@ -295,3 +295,4 @@ var JoydivModule;
     JoydivModule.Joydiv = Joydiv;    
 })(JoydivModule || (JoydivModule = {}));
 
+// https://stackoverflow.com/questions/40917604/javascript-prototype-overriding
