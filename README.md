@@ -9,7 +9,7 @@ This project relies on work done by @qbolec with [joydiv](https://github.com/qbo
 
 ### Steps to get this up and running:
 
-* install j2dx plugin and set it up. See instuctions [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
+* install j2dx plugin and set it up. See instuctions [from my fork](https://github.com/harsh2204/Joy2DroidX-server) or  [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
 * edit socketjoy.js to open the socket at the local IP address of your machine on line.
 * run a j2dx instance by simply running `j2dx` or `j2dx -d` for debugging.
 * run `python -m http.server 8080` to serve the virtual controller front-end.
