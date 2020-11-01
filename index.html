@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
+  <title>Virtual Controller</title>
+  <link href="joydiv-skin-default.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id='turn'>
+    Use your device in landscape orientation
+  </div>
+  <div class="container">
+    <div class="bumpers">
+      <div id="left-bumper">L</div>
+      <div id="right-bumper">R</div>
+    </div>
+    <div class="triggers">
+      <div class="trigger-div" id="left-trigger">
+        <div class="trigger-trackpad">
+          <div class="trigger-tracker">
+
+          </div>
+        </div>
+      </div>
+      <div class="trigger-div" id="right-trigger" >
+        <div class="trigger-trackpad">
+          <div class="trigger-tracker">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='joystick1' class="joydiv-controller unselectable">
+      <div class="joydiv-up"></div>
+      <div class="joydiv-left"></div>
+      <div class="joydiv-right"></div>
+      <div class="joydiv-down"></div>
+      <div class="joydiv-trackpad">
+        <div class="joydiv-tracker"></div>
+      </div>
+    </div>
+    <div id='dpad' class="joydiv-controller">
+      <div class="joydiv-up"></div>
+      <div class="joydiv-left"></div>
+      <div class="joydiv-right"></div>
+      <div class="joydiv-down"></div>
+      <div class="joydiv-trackpad">
+        <div class="joydiv-tracker"></div>
+      </div>
+    </div>
+    <div class="center-btns">
+      <button id="back-button">BACK</button>
+      <button id="main-button">
+        <img src="xbox-logo.svg"></img>
+      </button>
+      <button id="start-button">START</button>
+    </div>
+    <div id='joystick2' class="joydiv-controller unselectable">
+      <div class="joydiv-up"></div>
+      <div class="joydiv-left"></div>
+      <div class="joydiv-right"></div>
+      <div class="joydiv-down"></div>
+      <div class="joydiv-trackpad">
+        <div class="joydiv-tracker"></div>
+      </div>
+    </div>
+    <div class="button-container">
+      <div class="xbox">
+        <button class="button unselectable" id="y-button">Y</button>
+        <button class="button unselectable" id="x-button">X</button>
+        <button class="button unselectable" id="b-button">B</button>
+        <button class="button unselectable" id="a-button">A</button>
+      </div>
+    </div>
+    <button class="configure" onclick="updateIP()"><span>&#9881;</span></button>
+  </div>
+</body>
+<script charset="UTF-8" src="joydiv.js"></script>
+<script src="socket.io.js"></script>
+<script src="socketjoy.js"></script>
+</html>
