@@ -1,12 +1,32 @@
 var SERVER_IP = "192.168.2.92:8013";// Change your ip here
-var sock = io(SERVER_IP); 
+function isLocalNetwork(hostname = window.location.hostname) {
+  return (
+    (['localhost', '127.0.0.1', '', '::1'].includes(hostname))
+    || (hostname.startsWith('192.168.'))
+    || (hostname.startsWith('10.0.'))
+    || (hostname.endsWith('.local'))
+  )
+}
+
+var isLocal = isLocalNetwork();
+// var isLocal = false;
+
+var sock;
+
+if (isLocal) {
+  sock = io(SERVER_IP);
+} else {
+  // Notify user that this is a demo only
+  var demo = document.getElementById('demo');
+  demo.style.display = 'block'
+}
 
 var conf = document.getElementsByClassName('configure')
 
-function updateIP(){
+function updateIP() {
   var ip = prompt('Please enter the j2dx server IP')
   console.log(ip)
-  if (ip !== null){
+  if (ip !== null) {
     SERVER_IP = ip;
     sock.close();
     sock = io(SERVER_IP);
@@ -108,17 +128,20 @@ j2.addEventListener("joydiv-changed", function (e) {
 });
 
 // Initialize virtual controller
-sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
-// Press the xbox button to initialize the controller!
+if (isLocal) {
+  // Press the xbox button to initialize the controller!
+  sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
 
-sock.on("disconnect", () => {
-  document.getElementsByTagName("img")[0].style.filter =
-    "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
-});
-sock.on("connect", () => {
-  document.getElementsByTagName("img")[0].style.filter =
-    "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
-  setTimeout(() => {
-    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
-  }, 5000);
-});
+  sock.on("disconnect", () => {
+    document.getElementsByTagName("img")[0].style.filter =
+      "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
+  });
+  sock.on("connect", () => {
+    document.getElementsByTagName("img")[0].style.filter =
+      "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
+    setTimeout(() => {
+      document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+    }, 5000);
+  });
+
+}
