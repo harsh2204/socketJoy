@@ -24,6 +24,7 @@ body {
   height: 100%;
   touch-action: none; /* Disable panning and zooming  */
 }
+/* Cog button */
 .configure{
   font-size: 30px;
   background: transparent;
@@ -33,6 +34,42 @@ body {
   top: 0px;
   right: 0px;
 }
+
+/* Triggers */
+.triggers{
+  position: absolute;
+  display: flex;
+  margin-top: 20vh;
+  width: 100%;
+  height: 20vh;
+  background-color: firebrick;
+}
+#left-trigger{
+  margin-left: 5vw;
+}
+#right-trigger{
+  margin-left: auto;
+  margin-right: 5vw;
+  justify-content: center;
+}
+.trigger-div .trigger-trackpad{
+  display: flex;
+  background-color: forestgreen;
+  height: 20vh;
+  width: 4vw;
+  padding: 10px;
+  border-radius: 15px;
+  justify-content: center;
+}
+.trigger-div .trigger-tracker{
+  position: absolute;
+  background-color: moccasin;
+  border-radius: 50%;
+  padding: 3vw;
+  margin-top: -2vh;
+}
+
+
 /*  BUMPER BUTTONS  */
 .bumpers{
   position: absolute;
@@ -43,7 +80,6 @@ body {
   /* background-color: firebrick; */
   margin-top: 8vh;
   text-align: center;
-  vertical-align: middle;
   align-items: center;
 }
 
