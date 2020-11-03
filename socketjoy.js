@@ -1,4 +1,5 @@
 var SERVER_IP = "192.168.2.92:8013";// Change your ip here
+
 function isLocalNetwork(hostname = window.location.hostname) {
   return (
     (['localhost', '127.0.0.1', '', '::1'].includes(hostname))
@@ -7,7 +8,6 @@ function isLocalNetwork(hostname = window.location.hostname) {
     || (hostname.endsWith('.local'))
   )
 }
-
 var isLocal = isLocalNetwork();
 // var isLocal = false;
 
@@ -36,11 +36,32 @@ function updateIP() {
 function send_input(key, value) {
   sock.emit("input", { key: key, value: value });
 }
-function createButton(id) {
+function createButton(id, dblClick = false) {
   var button = document.getElementById(id);
+
+  button.setAttribute('btn-locked', 0);
   button.addEventListener(
     "touchstart",
     function (e) {
+      if (dblClick) {
+        if (button.getAttribute('data-dblclick') == null) {
+          button.setAttribute('data-dblclick', 1);
+          setTimeout(function () {
+            if (button.getAttribute("data-dblclick") == 1) {
+              // Default 1 click behavior
+              button.setAttribute('btn-locked', 0)
+              button.style.border = 'none'
+              send_input(id, 0)
+            }
+            button.removeAttribute("data-dblclick");
+          }, 200);
+        } else{
+          button.removeAttribute("data-dblclick");
+          // Action for double click
+          button.style.border = '1px solid white'
+          button.setAttribute('btn-locked', 1)
+        }
+      }
       send_input(id, 1);
       e.preventDefault();
     },
@@ -49,7 +70,14 @@ function createButton(id) {
   button.addEventListener(
     "touchend",
     function (e) {
-      send_input(id, 0);
+      // Come back to this
+      if (dblClick){
+        if (button.getAttribute('btn-locked') != 1){
+          send_input(id, 0);
+        }
+      } else {
+          send_input(id, 0);
+      }
       e.preventDefault();
     },
     false
@@ -65,8 +93,8 @@ createButton("main-button");
 createButton("back-button");
 createButton("start-button");
 
-createButton("left-bumper");
-createButton("right-bumper");
+createButton("left-bumper", true);
+createButton("right-bumper", true);
 // DPAD
 // Use JoyDiv with 8 direction input, and emit them accordingly. So instead of sending the x and y values, send button 0 or 1
 var dpad = document.getElementById("dpad");
@@ -109,30 +137,28 @@ var leftTrig = new JoydivModule.Trigger({
   element: tl,
   topHome: '10px',
   clampY: 1,
-  positiveOnly:true,
+  positiveOnly: true,
   flipY: true
 })
 
-tl.addEventListener('trigger-changed', function(e){
+tl.addEventListener('trigger-changed', function (e) {
   var tVal = leftTrig.getOneDirection().offset.y;
-  console.log("left trigger "+tVal)
-  sock.emit("input", { key: "left-trigger", value: tVal});
+  sock.emit("input", { key: "left-trigger", value: tVal });
 });
 
 var tr = document.getElementById('right-trigger')
 
-var rightTrig= new JoydivModule.Trigger({
+var rightTrig = new JoydivModule.Trigger({
   element: tr,
   topHome: '10px',
   clampY: 1,
-  positiveOnly:true,
+  positiveOnly: true,
   flipY: true
 })
 
-tr.addEventListener('trigger-changed', function(e){
+tr.addEventListener('trigger-changed', function (e) {
   var tVal = rightTrig.getOneDirection().offset.y;
-  console.log("right trigger "+tVal)
-  sock.emit("input", { key: "right-trigger", value: tVal});
+  sock.emit("input", { key: "right-trigger", value: tVal });
 });
 
 // Joysticks
