@@ -1,4 +1,5 @@
 var SERVER_IP = "192.168.2.92:8013";// Change your ip here
+var DBL_TAP_THRESH = 200; //ms 
 
 function isLocalNetwork(hostname = window.location.hostname) {
   return (
@@ -40,6 +41,7 @@ function createButton(id, dblClick = false) {
   var button = document.getElementById(id);
 
   button.setAttribute('btn-locked', 0);
+
   button.addEventListener(
     "touchstart",
     function (e) {
@@ -54,7 +56,7 @@ function createButton(id, dblClick = false) {
               send_input(id, 0)
             }
             button.removeAttribute("data-dblclick");
-          }, 200);
+          }, DBL_TAP_THRESH);
         } else{
           button.removeAttribute("data-dblclick");
           // Action for double click
@@ -70,19 +72,19 @@ function createButton(id, dblClick = false) {
   button.addEventListener(
     "touchend",
     function (e) {
-      // Come back to this
       if (dblClick){
-        if (button.getAttribute('btn-locked') != 1){
-          send_input(id, 0);
+        if (button.getAttribute('btn-locked') == 1){
+          // Prevent button unpress if button is locked
+          return;
         }
-      } else {
-          send_input(id, 0);
       }
+      send_input(id, 0);
       e.preventDefault();
     },
     false
   );
 }
+
 // Buttons
 createButton("y-button");
 createButton("x-button");
