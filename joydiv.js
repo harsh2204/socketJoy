@@ -412,7 +412,6 @@ var JoydivModule;
             });
             return acc;
         };
-        // I probably don't need the voting system here, but let's keep it for now.
         Trigger.prototype.addVote = function (direction, voter) {
             this.votes[voter] = direction;
             this.changed();
