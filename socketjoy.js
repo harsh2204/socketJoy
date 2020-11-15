@@ -1,5 +1,6 @@
 var SERVER_IP = "192.168.2.92:8013";// Change your ip here
 var DBL_TAP_THRESH = 200; //ms 
+var CONNECTED = false;
 
 function isLocalNetwork(hostname = window.location.hostname) {
   return (
@@ -46,6 +47,7 @@ function createButton(id, dblClick = false) {
     "touchstart",
     function (e) {
       if (dblClick) {
+        // Double tap to latch
         if (button.getAttribute('data-dblclick') == null) {
           button.setAttribute('data-dblclick', 1);
           setTimeout(function () {
@@ -97,6 +99,7 @@ createButton("start-button");
 
 createButton("left-bumper", true);
 createButton("right-bumper", true);
+
 // DPAD
 // Use JoyDiv with 8 direction input, and emit them accordingly. So instead of sending the x and y values, send button 0 or 1
 var dpad = document.getElementById("dpad");
@@ -189,6 +192,7 @@ j2.addEventListener("joydiv-changed", function (e) {
   sock.emit("input", { key: "right-stick-Y", value: offset.y });
 });
 
+
 // Initialize virtual controller
 if (isLocal) {
   // Press the xbox button to initialize the controller!
@@ -197,13 +201,20 @@ if (isLocal) {
   sock.on("disconnect", () => {
     document.getElementsByTagName("img")[0].style.filter =
       "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
+      CONNECTED = false;
   });
   sock.on("connect", () => {
     document.getElementsByTagName("img")[0].style.filter =
       "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
+    CONNECTED = true;
     setTimeout(() => {
       document.getElementsByTagName("img")[0].style.filter = "invert(0)";
     }, 5000);
   });
 
+  setTimeout(() =>{
+    if (CONNECTED == false){
+      conf[0].click();
+    }
+  }, 500);
 }
