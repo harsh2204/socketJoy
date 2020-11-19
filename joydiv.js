@@ -323,7 +323,12 @@ var JoydivModule;
                 // var x = 2 * (e.screenX - origin.x) / _this.rootElement.clientWidth;
                 var y = 2 * (e.screenY - origin.y) / _this.rootElement.clientHeight;
                 // _this.tracker.style.left = (x + 0.5) * 100 + "%";
-                _this.tracker.style.top = (y + 0.01) * 50 + "%";
+                function clamp(num, min, max) {
+                    return num <= min ? min : num >= max ? max : num;
+                }
+                var pos_y = (y + 0.01) * 50 
+                pos_y = clamp(pos_y, 0, 100);
+                _this.tracker.style.top = pos_y + "%";
                 return new Direction({
                     y: -y
                 }, dim = 1);
