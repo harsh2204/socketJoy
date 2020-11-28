@@ -20,7 +20,8 @@ if (isLocal) {
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
-  demo.style.display = 'block'
+  demo.style.display = 'block';
+  document.title = "SocketJoy Demo";
 }
 
 var conf = document.getElementsByClassName('configure')
