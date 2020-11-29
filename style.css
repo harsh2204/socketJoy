@@ -14,6 +14,10 @@ body {
   overflow: hidden;
 }
 
+.small {
+  font-size: 10px;
+}
+
 .container {
   background-color: gray;
   display: flex;
