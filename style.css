@@ -200,30 +200,35 @@ body {
 
 /* RIGHT STICK */
 #joystick2 {
-  width: 150px;
-  height: 150px;
-  margin: 0px;
-  top: 60%;
+  /* position: absolute; */
+  width: 200px;
+  height: 200px;
+  left: 10vw;
+  /* margin: -100px; */
+  /* margin-left: -5%; */
+  /* margin-right: -10%; */
+  /* margin-top: -5%; */
+  top: 50%;
 }
 
 #joystick2 .joydiv-trackpad{
-  /* font-size: 200px; */
+  /* font-size: 300px; */
   border-radius: 50%;
 }
 #joystick2 .joydiv-tracker{
-  font-size: 150px;
+  font-size: 200px;
 }
 #joystick2 .joydiv-up{
-  font-size: 0px;
+  display: none;
 }
 #joystick2 .joydiv-down{
-  font-size: 0px;
+  display: none;
 }
 #joystick2 .joydiv-left{
-  font-size: 0px;
+  display: none;
 }
 #joystick2 .joydiv-right{
-  font-size: 0px;
+  display: none;
 }
 
 /* XBOX buttons */
@@ -247,8 +252,8 @@ body {
 
 .xbox {
   display: flex;
-  position: relative;
-  /* right: 0%; top: 20%; */
+  position: absolute;
+  right: -5vw; top: 5vh;
   height: 200px;
   width: 200px;
 }
