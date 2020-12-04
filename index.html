@@ -25,6 +25,7 @@
   </div>
   <div class="container">
   <div id="demo">This is a demo only! Download and serve the repo locally to test the gamepad</div>
+  <p>Socket Joy Alpha</p>
     <div class="bumpers">
       <div id="left-bumper">L</div>
       <div id="right-bumper">R</div>
@@ -44,15 +45,23 @@
         </div>
       </div>
     </div>
-    <div id='joystick1' class="joydiv-controller unselectable">
-      <div class="joydiv-up"></div>
-      <div class="joydiv-left"></div>
-      <div class="joydiv-right"></div>
-      <div class="joydiv-down"></div>
-      <div class="joydiv-trackpad">
-        <div class="joydiv-tracker"></div>
-      </div>
+    <div class="center-btns">
+      <button id="back-button">BACK</button>
+      <button id="main-button">
+        <img src="xbox-logo.svg"></img>
+      </button>
+      <button id="start-button">START</button>
     </div>
+    <div class="bottom-row">
+      <div id='joystick1' class="joydiv-controller unselectable">
+        <div class="joydiv-up"></div>
+        <div class="joydiv-left"></div>
+        <div class="joydiv-right"></div>
+        <div class="joydiv-down"></div>
+        <div class="joydiv-trackpad">
+          <div class="joydiv-tracker"></div>
+        </div>
+      </div>
     <div id='dpad' class="joydiv-controller">
       <div class="joydiv-up"></div>
       <div class="joydiv-left"></div>
@@ -61,13 +70,6 @@
       <div class="joydiv-trackpad">
         <div class="joydiv-tracker"></div>
       </div>
-    </div>
-    <div class="center-btns">
-      <button id="back-button">BACK</button>
-      <button id="main-button">
-        <img src="xbox-logo.svg"></img>
-      </button>
-      <button id="start-button">START</button>
     </div>
     <div id='joystick2' class="joydiv-controller unselectable">
       <div class="joydiv-up"></div>
@@ -78,7 +80,6 @@
         <div class="joydiv-tracker"></div>
       </div>
     </div>
-    <div class="button-container">
       <div class="xbox">
         <button class="button unselectable" id="y-button">Y</button>
         <button class="button unselectable" id="x-button">X</button>
