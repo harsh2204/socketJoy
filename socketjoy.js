@@ -54,9 +54,11 @@ function createButton(id, dblClick = false) {
           setTimeout(function () {
             if (button.getAttribute("data-dblclick") == 1) {
               // Default 1 click behavior
+              if (button.getAttribute("btn-locked") == 1) {
+                send_input(id, 0)
+              }
               button.setAttribute('btn-locked', 0)
               button.style.border = 'none'
-              send_input(id, 0)
             }
             button.removeAttribute("data-dblclick");
           }, DBL_TAP_THRESH);
