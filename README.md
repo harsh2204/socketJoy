@@ -6,6 +6,12 @@ Use your mobile phone as a virtual xbox controller for your windows or linux pc!
 
 This project relies on work done by @qbolec with [joydiv](https://github.com/qbolec/Joydiv) and the [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/) server written by @OzymandiasTheGreat, so huge thanks to them!
 
+### Install Script:
+The following script is a quick way to get the server and client up and running with one(sort-of) command.
+```
+mkdir virtual-controller && cd virtual-controller; bash <(curl -s https://raw.githubusercontent.com/harsh2204/socketjoy/master/install.sh)
+```
+
 ### Steps to get this up and running:
 
 * install j2dx plugin and set it up. See instuctions [from my fork](https://github.com/harsh2204/Joy2DroidX-server) or  [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
