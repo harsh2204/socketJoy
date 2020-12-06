@@ -9,7 +9,7 @@ This project relies on work done by @qbolec with [joydiv](https://github.com/qbo
 ### Install Script:
 The following script is a quick way to get the server and client up and running with one(sort-of) command.
 ```
-mkdir virtual-controller && cd virtual-controller; bash <(curl -s https://raw.githubusercontent.com/harsh2204/socketjoy/master/install.sh)
+python3 -m venv virtual-controller && cd virtual-controller; bash <(curl -s https://raw.githubusercontent.com/harsh2204/socketjoy/master/install.sh)
 ```
 
 ### Steps to get this up and running:
