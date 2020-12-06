@@ -5,7 +5,7 @@ git clone https://github.com/harsh2204/socketjoy.git socket-joy/
 
 ./bin/activate
 
-pip install -I j2dx-server
+pip install -I j2dx-server/
 j2dx --setup
 cd socket-joy/
 ./run.sh && deactivate
