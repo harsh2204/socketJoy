@@ -22,6 +22,8 @@ python3 -m venv virtual-controller && cd virtual-controller; bash <(curl -s http
 
 --- 
 
+TODO: Reimplement the front end rendering to support custom positions and controller configurations in general!
+
 ### Implemenation Status
 
 **Button/Command**|** Status**
