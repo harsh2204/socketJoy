@@ -14,9 +14,16 @@ var isLocal = isLocalNetwork();
 // var isLocal = false;
 
 var sock;
-
+var lat;
 if (isLocal) {
   sock = io(SERVER_IP);
+
+  // Start measuring connection latency
+  lat = 0;
+  sock.on('pong', function(ms) {
+    lat = ms;
+    document.getElementById("stats").innerHTML = "lat: " + ms + "ms";
+  });
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
@@ -26,6 +33,7 @@ if (isLocal) {
 
 var conf = document.getElementsByClassName('configure')
 
+// Rewrite this method to a propper modal-based config menu
 function updateIP() {
   var ip = prompt('Please enter the j2dx server IP')
   console.log(ip)

@@ -28,6 +28,14 @@ body {
   height: 100%;
   touch-action: none; /* Disable panning and zooming  */
 }
+/* stats */
+#stats{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 /* Cog button */
 .configure{
   font-size: 30px;
