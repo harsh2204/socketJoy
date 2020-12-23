@@ -13,7 +13,7 @@ bash <(curl -s https://gist.githubusercontent.com/harsh2204/ad0edf5ef6298464fb5f
 ```
 
 To run the server again you can simply go into `virtual-controller/socket-joy` and run `./run.sh`.
-### Manual Setup and Deploymet Steps:
+### Manual Setup and Deployment Steps:
 
 * install j2dx plugin and set it up. See instuctions [from my fork](https://github.com/harsh2204/Joy2DroidX-server) or  [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
 * edit socketjoy.js to open the socket at the local IP address of your machine on line. Alternatively, you can also do this in the browser after you connect you smartphone..
