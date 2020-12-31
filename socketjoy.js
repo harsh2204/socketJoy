@@ -223,7 +223,8 @@ if (isLocal) {
     }, 5000);
   });
   // Prevent conext menu from popping up on long press
-  window.addEventListener("contextmenu", function(e) { e.preventDefault(); }
+  window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+  
   setTimeout(() =>{
     if (CONNECTED == false){
       conf[0].click();
