@@ -1,18 +1,46 @@
 ## SocketJoy
 
-**Note** : This project is currently only being tested on linux (and may not work on windows). Once the frontend implementation is done, I'll start testing on windows.
-
 Use your mobile phone as a virtual xbox controller for your windows or linux pc!
 
 This project relies on work done by @qbolec with [joydiv](https://github.com/qbolec/Joydiv) and the [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/) server written by @OzymandiasTheGreat, so huge thanks to them!
 
-### Install Script:
+### Quickstart
+
+#### Windows
+
+__Server:__
+```
+wget https://github.com/OzymandiasTheGreat/Joy2DroidX-server/releases/download/v0.1.0/Joy2DroidX-server-0.1.0-x86_64.exe
+```
+
+Or simply download and run this server [executable](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/releases/download/v0.1.0/Joy2DroidX-server-0.1.0-x86_64.exe)
+
+Note that you can run the exe in a cmd terminal and pass in `-d` to enable debugging on the server side.
+```
+Joy2DroidX-server-0.1.0-x86_64.exe -d
+```
+
+__Client:__
+
+```
+git clone https://github.com/harsh2204/socketjoy.git
+cd socketjoy
+python3 -m http.server
+```
+
+Connect to the client address with the correct port to complete the quickstart.
+
+---
+
+#### Linux:
+
 The following script is a quick way to get the server and client up and running with one command. The server and client will be installed in a directory called `virtual-controller`. 
 ```
 bash <(curl -s https://gist.githubusercontent.com/harsh2204/ad0edf5ef6298464fb5f6d50bd01196f/raw)
 ```
 
 To run the server again you can simply go into `virtual-controller/socket-joy` and run `./run.sh`.
+
 ### Manual Setup and Deployment Steps:
 
 * install j2dx plugin and set it up. See instuctions [from my fork](https://github.com/harsh2204/Joy2DroidX-server) or  [here](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/#installation)
