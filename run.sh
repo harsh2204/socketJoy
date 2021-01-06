@@ -1,9 +1,9 @@
 #!/bin/sh
-function usage() {
+usage() {
     echo "Usage: ./run.sh [virtual-env-directory]"
     echo
 }
-function error() {
+error() {
     echo "Something went wrong when sourcing the venv. Please check your venv directory and ensure j2dx is installed correctly."
     usage
     exit 1
