@@ -19,6 +19,7 @@ Note that you can run the exe in a cmd terminal and pass in `-d` to enable debug
 ```
 Joy2DroidX-server-0.1.0-x86_64.exe -d
 ```
+(Note that the qr code and address output from this command is for the j2dx server which the client connects to. Incase the default server address in `socketjoy.js` is different from the one provided in the output, just update the address in `socketjoy.js` or manually enter the address on your smartphone by clicking the cog button)
 
 __Client:__
 
@@ -28,7 +29,7 @@ cd socketjoy
 python3 -m http.server
 ```
 
-Connect to the client address with the correct port to complete the quickstart.
+Connect to the __client__ address with the correct port to complete the quickstart.
 
 ---
 
