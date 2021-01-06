@@ -22,7 +22,8 @@ if (isLocal) {
   lat = 0;
   sock.on('pong', function(ms) {
     lat = ms;
-    document.getElementById("stats").innerHTML = "lat: " + ms + "ms";
+    document.getElementById("stats").innerHTML = "latency: " + ms + "ms";
+    document.getElementById("stats").style.display = "block";
   });
 } else {
   // Notify user that this is a demo only
