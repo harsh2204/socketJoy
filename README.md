@@ -4,6 +4,8 @@ Use your mobile phone as a virtual xbox controller for your windows or linux pc!
 
 This project relies on work done by @qbolec with [joydiv](https://github.com/qbolec/Joydiv) and the [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/) server written by @OzymandiasTheGreat, so huge thanks to them!
 
+[Demo Video](https://github.com/harsh2204/socketjoy/releases/tag/v0.1-alpha)
+
 ### Quickstart
 
 #### Windows
@@ -58,22 +60,5 @@ TODO: Reimplement the front end rendering to support custom positions and contro
 
 **Button/Command**|** Status**
 :-----:|:-----:
-main-button|✅
-back-button|✅
-start-button|✅
 left-stick-press|❎
 right-stick-press|❎
-left-bumper|✅
-left-trigger|✅
-right-bumper|✅
-right-trigger|✅
-up-button|✅
-right-button|✅
-down-button|✅
-left-button|✅
-y-button|✅
-x-button|✅
-a-button|✅
-b-button|✅
-left-stick|✅
-right-stick|✅
