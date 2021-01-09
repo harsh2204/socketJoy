@@ -11,9 +11,9 @@
   <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
   <title>SocketJoy</title>
-  <link href="joydiv-skin-default.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
-  <link rel="apple-touch-icon" href="favicon.ico">
+  <link href="/static/joydiv-skin-default.css" rel="stylesheet" />
+  <link href="/static/style.css" rel="stylesheet" />
+  <link rel="apple-touch-icon" href="/static/favicon.ico">
 </head>
 
 <body>
@@ -50,7 +50,7 @@
     <div class="center-btns">
       <button id="back-button">BACK</button>
       <button id="main-button">
-        <img src="xbox-logo.svg"></img>
+        <img src="/static/xbox-logo.svg"></img>
       </button>
       <button id="start-button">START</button>
     </div>
@@ -92,7 +92,7 @@
     <button class="configure" onclick="updateIP()"><span>&#9881;</span></button>
   </div>
 </body>
-<script charset="UTF-8" src="joydiv.js"></script>
-<script src="socket.io.js"></script>
-<script src="socketjoy.js"></script>
+<script charset="UTF-8" src="/static/joydiv.js"></script>
+<script src="/static/socket.io.min.js"></script>
+<script src="/static/socketjoy.js"></script>
 </html>

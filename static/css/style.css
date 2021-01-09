@@ -138,7 +138,8 @@ body {
   padding: 0;
   margin: 5px;
   border: none;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: peru;
 }
 #main-button img {
   width: 50px;

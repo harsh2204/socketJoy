@@ -10,13 +10,13 @@ function isLocalNetwork(hostname = window.location.hostname) {
     || (hostname.endsWith('.local'))
   )
 }
-var isLocal = isLocalNetwork();
-// var isLocal = false;
+// var isLocal = isLocalNetwork();
+var isLocal = true;
 
 var sock;
 var lat;
 if (isLocal) {
-  sock = io(SERVER_IP);
+  sock = io();
 
   // Start measuring connection latency
   lat = 0;
