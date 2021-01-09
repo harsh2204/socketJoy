@@ -1,4 +1,3 @@
-var SERVER_IP = "192.168.2.92:8013";// Change your ip here
 var DBL_TAP_THRESH = 200; //ms 
 var CONNECTED = false;
 
@@ -208,7 +207,6 @@ j2.addEventListener("joydiv-changed", function (e) {
 // Initialize virtual controller
 if (isLocal) {
   // Press the xbox button to initialize the controller!
-  sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
 
   sock.on("disconnect", () => {
     document.getElementsByTagName("img")[0].style.filter =
@@ -216,6 +214,7 @@ if (isLocal) {
       CONNECTED = false;
   });
   sock.on("connect", () => {
+    sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
     document.getElementsByTagName("img")[0].style.filter =
       "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
     CONNECTED = true;

@@ -93,12 +93,9 @@ class X360Device(Device):
 		self._ui = UInput(
 			events=self.capabilities,
 			name=self.type,
-			vendor=0x045e,
-			product=0x2020, #0x028e,
+			vendor=0x045e, # Microsoft
+			product=0x2020, # 0x2020 is a random product id
 			version=0x0110,
-			# vendor=0x045e,
-			# product=0x02d1, #0x028e,
-			# version=0x0110,
 			bustype=e.BUS_USB,
 		)
 
