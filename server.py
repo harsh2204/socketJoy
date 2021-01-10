@@ -114,7 +114,7 @@ def main():
         '/static/style.css': 'static/css/style.css',
         '/static/joydiv-skin-default.css': 'static/css/joydiv-skin-default.css',
         '/static/favicon.ico':  'static/favicon.ico',
-        # '/static/xbox-logo.svg':  'static/xbox-logo.svg',
+        '/static/xbox-logo.svg':  {'filename': 'static/xbox-logo.svg', 'content_type':'image/svg+xml'},
     }
 
     sio = Server(logger=args.debug, engineio_logger=args.debug,
