@@ -1,2 +1,5 @@
 *.zip
 */__pycache__/*
+sj.out
+venv/
+cron.out

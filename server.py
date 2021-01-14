@@ -81,12 +81,14 @@ def default_host():
     try:
         sock.connect(('1.255.255.255', 1))
         IP = sock.getsockname()[0]
+        IP = get_ip_address('wlan1')
     except OSError:
         IP = get_ip_address('wlan1')
     except IndexError:
         IP = '127.0.0.1'
     finally:
         sock.close()
+    print(IP)
     return IP
 
 
@@ -168,7 +170,7 @@ def main():
     if platform.system() == 'Windows':
         import colorama
         colorama.init()
-    qr.print_ascii(tty=True)
+    qr.print_ascii()
     wsgi.server(sock, app, log=wsgi_logger, log_output=args.debug, debug=False)
 
 
