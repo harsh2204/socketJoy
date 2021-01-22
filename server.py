@@ -5,19 +5,18 @@ import platform
 import socket
 from argparse import ArgumentParser
 import qrcode
-from socketio import Server, WSGIApp
-from eventlet import wsgi, listen
+import socketio
+# from eventlet import wsgi, listen
+from aiohttp import web
+
 if platform.system() == 'Linux':
-	from nix.device import X360Device, DS4Device
+	from nix.device import GamepadDevice
 	from nix.setup import setup
 else:
     try:
-        from .win.device import X360Device, DS4Device
+        from .win.device import GamepadDevice
         from .win.setup import setup
-    except ImportError:
-        from j2dx.win.device import X360Device, DS4Device
-        from j2dx.win.setup import setup
-
+    except ImportError:from aiohttp import web
 
 def parse_args():
     parser = ArgumentParser()
@@ -59,13 +58,13 @@ def get_logger(debug):
         logging.INFO if debug else logging.ERROR)
     logging.getLogger('socketio.server').setLevel(
         logging.INFO if debug else logging.ERROR)
-    wsgi_logger = logging.getLogger('eventlet.wsgi.server')
-    wsgi_logger.setLevel(
+    aiohttp_logger = logging.getLogger('aiohttp.server')
+    aiohttp_logger.setLevel(
         logging.INFO if debug else logging.ERROR)
-    return (logging.getLogger('J2DX.server'), wsgi_logger)
+    return (logging.getLogger('socketJoy.server'), aiohttp_logger)
 
 
-def get_ip_address(ifname):
+def get_ip_address(ifname): # This function retrieves network device address from it's name (eg. wlan0)
     import fcntl
     import struct
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -81,8 +80,6 @@ def default_host():
     try:
         sock.connect(('1.255.255.255', 1))
         IP = sock.getsockname()[0]
-    except OSError:
-        IP = get_ip_address('wlan1')
     except IndexError:
         IP = '127.0.0.1'
     finally:
@@ -92,7 +89,7 @@ def default_host():
 
 def main():
     args = parse_args()
-    logger, wsgi_logger = get_logger(args.debug)
+    logger,  aiohttp_logger = get_logger(args.debug)
 
     if args.setup:
         if platform.system() == 'Linux':
@@ -105,71 +102,58 @@ def main():
     CLIENTS = {}
     DEVICES = {}
 
-    static_files = {
-        '/': 'index.html',
-        '/static/socket.io.min.js': 'static/js/socket.io.min.js',
-        # '/static/socket.io.js': 'static/js/socket.io.js',
-        '/static/socketjoy.js': 'static/js/socketjoy.js',
-        '/static/joydiv.js': 'static/js/joydiv.js',
-        '/static/style.css': 'static/css/style.css',
-        '/static/joydiv-skin-default.css': 'static/css/joydiv-skin-default.css',
-        '/static/favicon.ico':  'static/favicon.ico',
-        '/static/xbox-logo.svg':  {'filename': 'static/xbox-logo.svg', 'content_type':'image/svg+xml'},
-    }
+    # create a Socket.IO server
+    sio = socketio.AsyncServer(logger=args.debug, engineio_logger=args.debug, cors_allowed_origins='*',
+                                async_mode='aiohttp',
+                                ping_timeout=500) # ping_timeout(s) controls how long devices stay connected 
 
-    sio = Server(logger=args.debug, engineio_logger=args.debug,
-                 cors_allowed_origins='*', ping_timeout=180)
-    app = WSGIApp(sio, static_files=static_files)
+    # wrap with ASGI application
+    app = web.Application()
+    sio.attach(app)
 
-    # # create a Socket.IO server
-    # sio = socketio.AsyncServer(logger=args.debug, engineio_logger=args.debug, cors_allowed_origins='*', ping_timeout=500)
-
-    # # wrap with ASGI application
-    # app = socketio.ASGIApp(sio, static_files=static_files)
 
     @sio.event
-    def connect(sid, environ):
+    async def connect(sid, environ):
         CLIENTS[sid] = environ['REMOTE_ADDR']
-        logger.info(f'Client connected from {environ["REMOTE_ADDR"]}')
-        logger.debug(f'Client {environ["REMOTE_ADDR"]} sessionId: {sid}')
+        logger.info(f'New client connected from {environ["REMOTE_ADDR"]}')
+        logger.debug(f'Client [{CLIENTS[sid]}] : with {sid=}')
 
     @sio.event
-    def intro(sid, data):
-        if data['id'] == 'x360':
-            DEVICES[sid] = X360Device(data['device'], CLIENTS[sid])
-        else:
-            DEVICES[sid] = DS4Device(data['device'], CLIENTS[sid])
+    async def intro(sid, data):
+        DEVICES[sid] = GamepadDevice(data['device'], CLIENTS[sid])
         logger.info(
-            f'Created virtual {data["type"]} gamepad for {data["device"]} '
-            f'at {CLIENTS[sid]}')
+            f'Client [{CLIENTS[sid]}] : device creation complete as a {data["device"]}')
 
     @sio.event
-    def input(sid, data):
-        logger.debug(f'Received INPUT event::{data["key"]}: {data["value"]}')
+    async def input(sid, data):
+        logger.debug(f'Received input event::{data["key"]}: {data["value"]}')
         DEVICES[sid].send(data['key'], data['value'])
 
     @sio.event
-    def disconnect(sid):
+    async def disconnect(sid):
         device = DEVICES.pop(sid)
-        logger.info(f'Disconnected device {device.device} at {device.address}')
+        logger.info(f'Client [{device.address}] : disconnected (device : {device.device})')
         device.close()
 
-    try:
-        host = args.host or default_host()
-        sock = listen((host, args.port))
-    except PermissionError:
-        sys.exit(
-            f'Port {args.port} is not available. '
-            f'Please specify a different port with -p option.'
-        )
+    async def index(request):
+        with open('index.html') as f:
+            return web.Response(text=f.read(), content_type='text/html')
+    app.router.add_static('/static', 'static')
+    app.router.add_get('/', index)
+
+    host = args.host or default_host()
+
     logger.info(f'Listening on http://{host}:{args.port}/')
+
     qr = qrcode.QRCode()
     qr.add_data(f'http://{host}:{args.port}/')
     if platform.system() == 'Windows':
         import colorama
         colorama.init()
-    qr.print_ascii(tty=True)
-    wsgi.server(sock, app, log=wsgi_logger, log_output=args.debug, debug=False)
+    qr.print_ascii()
+
+    web.run_app(app, host=args.host, port=args.port, access_log=aiohttp_logger)
+
 
 
 if __name__ == '__main__':

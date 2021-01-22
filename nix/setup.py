@@ -4,11 +4,11 @@ import logging
 from subprocess import run
 
 
-logger = logging.getLogger('J2DX.Linux.Setup')
+logger = logging.getLogger('socketJoy.Linux.Setup')
 
 
-GROUP = 'j2dx'
-UDEV_PATH = '/etc/udev/rules.d/80-j2dx.uinput.rules'
+GROUP = 'socketjoy'
+UDEV_PATH = '/etc/udev/rules.d/80-socketjoy.uinput.rules'
 UDEV_RULE = (
 	f'SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="{GROUP}"')
 
