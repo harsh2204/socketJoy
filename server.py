@@ -84,6 +84,7 @@ def default_host():
         IP = '127.0.0.1'
     finally:
         sock.close()
+    print(IP)
     return IP
 
 
