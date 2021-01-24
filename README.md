@@ -24,16 +24,6 @@ bash <(curl -s https://gist.githubusercontent.com/harsh2204/ad0edf5ef6298464fb5f
 
 To run the server again you can simply go into `virtual-controller/socket-joy` and run `./run.sh`.
 
-
-TODO: Reimplement the front end rendering to support custom positions and controller configurations in general!
-
-### Implemenation Status:
-
-**Button/Command**|** Status**
-:-----:|:-----:
-left-stick-press|❎
-right-stick-press|❎
-
 ## **Credits**
 * [joydiv](https://github.com/qbolec/Joydiv) 
 * [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/)

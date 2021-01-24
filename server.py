@@ -14,8 +14,8 @@ if platform.system() == 'Linux':
 	from nix.setup import setup
 else:
     try:
-        from .win.device import GamepadDevice
-        from .win.setup import setup
+        from win.device import GamepadDevice
+        from win.setup import setup
     except ImportError:from aiohttp import web
 
 def parse_args():
