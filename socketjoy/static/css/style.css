@@ -1,0 +1,337 @@
+html,
+body {
+  -webkit-text-size-adjust: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: gray;
+  overflow: hidden;
+}
+
+.small {
+  font-size: 10px;
+}
+
+.container {
+  background-color: gray;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* border:1px solid coral; */
+  width: 100vw;
+  height: 100%;
+  touch-action: none; /* Disable panning and zooming  */
+}
+/* stats */
+#stats{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Cog button */
+.configure{
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  position: absolute;
+  padding: 0;
+  top: 0px;
+  right: 0px;
+}
+
+/* Triggers */
+.triggers{
+  position: absolute;
+  display: flex;
+  margin-top: 20vh;
+  width: 100%;
+  height: 20vh;
+}
+#left-trigger{
+  margin-left: 5vw;
+}
+#right-trigger{
+  margin-left: auto;
+  margin-right: 5vw;
+  justify-content: center;
+}
+.trigger-div .trigger-trackpad{
+  display: flex;
+  background-color:darkslategray;
+  height: 20vh;
+  width: 4vw;
+  padding: 10px;
+  border-radius: 15px;
+  justify-content: center;
+  opacity: 50%;
+}
+.trigger-div .trigger-tracker{
+  position: absolute;
+  background-color: moccasin;
+  border-radius: 50%;
+  padding: 3vw;
+  margin-top: -2vh;
+}
+
+
+/*  BUMPER BUTTONS  */
+.bumpers{
+  position: absolute;
+  display: flex;
+  width: 100%;
+  /* height: 30px; */
+  height: 10vh;
+  /* background-color: firebrick; */
+  margin-top: 8vh;
+  text-align: center;
+  align-items: center;
+}
+
+#left-bumper{
+  width: 50px;
+  padding: 10px;
+  margin-left: 10vw;
+  border-radius: 25px;
+  background-color: darkslategray;
+}
+#right-bumper{
+  width: 50px;
+  margin-left:auto; margin-right:10vw;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: darkslategray;
+}
+.bottom-row{
+  width: 100%;
+  height: 60%;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+}
+/* LEFT STICK */
+#joystick1 {
+  width: 25vw;
+  height: 25vw;
+  font-size: 200px;
+  /* margin: 20px; */
+  top: 10%;
+  /* background-color: cornflowerblue; */
+}
+
+/* Center Buttons */
+.center-btns {
+  position: absolute;
+  top: 20%;
+  height: 50px;
+}
+#main-button {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  background-color: transparent;
+}
+#main-button img {
+  width: 50px;
+  filter: invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg)
+    brightness(102%) contrast(70%);
+}
+#start-button {
+  position: relative;
+  top: -40%;
+  background-color: transparent;
+  margin: 5px;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: medium;
+  vertical-align: midde;
+}
+#back-button {
+  position: relative;
+  top: -40%;
+  background-color: transparent;
+  margin: 5px;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: medium;
+}
+
+:root{
+  --dpad-size: 20vw;
+  --dpad-btn-a: 30px;
+  --dpad-btn-b: 60px;
+}
+/* DPAD */
+#dpad {
+  width: var(--dpad-size);
+  height: var(--dpad-size);
+  font-size: 150px;
+  /* background-color: burlywood; */
+  top: 20%;
+  /* margin: 10px; */
+  margin-left: 10px;
+  opacity: 0.5;
+}
+
+#dpad .joydiv-right{
+  opacity: 1;
+  margin-top: -10%;
+  width: var(--dpad-btn-b);
+  height: var(--dpad-btn-a);
+  border:0;
+  background: black;
+}
+#dpad .joydiv-left{
+  opacity: 1;
+  margin-top: -10%;
+  width: var(--dpad-btn-b);
+  height: var(--dpad-btn-a);
+  border:0;
+  background: black;
+}
+#dpad .joydiv-up{
+  opacity: 1;
+  margin-left: -10%;
+  width: var(--dpad-btn-a);
+  height: var(--dpad-btn-b);
+  border:0;
+  background: black;
+}
+#dpad .joydiv-down{
+  opacity: 1;
+  margin-left: -10%;
+  width: var(--dpad-btn-a);
+  height: var(--dpad-btn-b);
+  border:0;
+  background: black;
+}
+#dpad .joydiv-trackpad{
+  background-color: gray;
+}
+
+/* RIGHT STICK */
+#joystick2 {
+  /* position: absolute; */
+  width: 25vw;
+  height: 25vw;
+  left: 10%;
+  top: 15%;
+}
+
+#joystick2 .joydiv-trackpad{
+  /* font-size: 300px; */
+  border-radius: 50%;
+}
+#joystick2 .joydiv-tracker{
+  font-size: 200px;
+}
+#joystick2 .joydiv-up{
+  display: none;
+}
+#joystick2 .joydiv-down{
+  display: none;
+}
+#joystick2 .joydiv-left{
+  display: none;
+}
+#joystick2 .joydiv-right{
+  display: none;
+}
+
+/* XBOX buttons */
+
+.button {
+  border: solid 1px #ecf0f1;
+  position: absolute;
+  border-radius: 50%;
+  background: none;
+  font-size: 32px;
+  height: 56px;
+  width: 56px;
+  padding: 0;
+}
+
+.xbox {
+  display: flex;
+  position: absolute;
+  right: -1vw;
+  top: 10%;
+  height: 200px;
+  width: 200px;
+}
+
+#y-button {
+  left: 72px;
+  top: 20px;
+  color: #fbc531;
+}
+
+#x-button {
+  left: 20px;
+  top: 72px;
+  color: #1289a7;
+}
+
+#b-button {
+  left: 124px;
+  top: 72px;
+  color: #e55039;
+}
+
+#a-button {
+  left: 72px;
+  top: 124px;
+  color: #009432;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#turn {
+  position: relative;
+  top: 50%;
+  text-align: center;
+  align-items: center;
+  color: antiquewhite;
+  background-color: firebrick;
+  font-size: 1.5em;
+}
+
+/* blessed from https://code-boxx.com/lock-screen-orientation/ */
+@media only screen and (orientation:portrait){
+  #turn{ display:block; }
+  .container{ display:none; }
+}
+@media only screen and (orientation:landscape){
+  #turn{ display:none; }
+  .container{ display:flex; }
+}
+
+#demo {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 25vw;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+  font-size: 1.5em;
+  color:firebrick;
+  opacity: 50%;
+}
