@@ -111,13 +111,14 @@ def main():
 
 
     static_files = {
-        '/': 'index.html',
-        '/static/js/socket.io.min.js': 'static/js/socket.io.min.js',
-        '/static/js/socketjoy.js': 'static/js/socketjoy.js',
-        '/static/js/joydiv.js': 'static/js/joydiv.js',
-        '/static/css/style.css': 'static/css/style.css',
-        '/static/css/joydiv-skin-default.css': 'static/css/joydiv-skin-default.css',
-        '/static/socketjoy.ico':  'static/socketjoy.ico',
+        '/': 'socketjoy/index.html',
+        '/static/js/socket.io.min.js': 'socketjoy/static/js/socket.io.min.js',
+        '/static/js/socketjoy.js': 'socketjoy/static/js/socketjoy.js',
+        '/static/js/joydiv.js': 'socketjoy/static/js/joydiv.js',
+        '/static/css/style.css': 'socketjoy/static/css/style.css',
+        '/static/css/joydiv-skin-default.css': 'socketjoy/static/css/joydiv-skin-default.css',
+        '/static/socketjoy.ico':  'socketjoy/static/socketjoy.ico',
+        '/favicon.ico':  'socketjoy/static/socketjoy.ico',
     }
 
     # create a Socket.IO server
