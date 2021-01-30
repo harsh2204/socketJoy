@@ -13,6 +13,7 @@ hidden_imports = [
 	*collect_submodules('eventlet.hubs'),
 	*collect_submodules('dns'),
 ]
+
 static_files = [(f'{APP}/static', 'static'), (f'{APP}/index.html', '.')]
 
 linux_data = [
