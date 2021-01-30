@@ -9,8 +9,8 @@ function isLocalNetwork(hostname = window.location.hostname) {
     || (hostname.endsWith('.local'))
   )
 }
-// var isLocal = isLocalNetwork();
-var isLocal = true;
+var isLocal = isLocalNetwork();
+// var isLocal = true;
 
 var sock;
 var lat;
