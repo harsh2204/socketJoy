@@ -8,6 +8,16 @@ import qrcode
 import socketio
 from eventlet import wsgi, listen
 
+if getattr(sys, 'frozen', False):
+    # If the application is run as a bundle, the PyInstaller bootloader
+    # extends the sys module by a flag frozen=True and sets the app 
+    # path into variable _MEIPASS'.
+    app_path= sys._MEIPASS
+else:
+    app_path= os.path.dirname(os.path.abspath(__file__))
+
+# print(app_path)
+
 if platform.system() == 'Linux':
     try:
         from nix.device import GamepadDevice
@@ -89,7 +99,6 @@ def default_host():
         IP = '127.0.0.1'
     finally:
         sock.close()
-    print(IP)
     return IP
 
 
@@ -111,14 +120,14 @@ def main():
 
 
     static_files = {
-        '/': 'socketjoy/index.html',
-        '/static/js/socket.io.min.js': 'socketjoy/static/js/socket.io.min.js',
-        '/static/js/socketjoy.js': 'socketjoy/static/js/socketjoy.js',
-        '/static/js/joydiv.js': 'socketjoy/static/js/joydiv.js',
-        '/static/css/style.css': 'socketjoy/static/css/style.css',
-        '/static/css/joydiv-skin-default.css': 'socketjoy/static/css/joydiv-skin-default.css',
-        '/static/socketjoy.ico':  'socketjoy/static/socketjoy.ico',
-        '/favicon.ico':  'socketjoy/static/socketjoy.ico',
+        '/': f'{app_path}/index.html',
+        '/static/js/socket.io.min.js': f'{app_path}/static/js/socket.io.min.js',
+        '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
+        '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
+        '/static/css/style.css': f'{app_path}/static/css/style.css',
+        '/static/css/joydiv-skin-default.css': f'{app_path}/static/css/joydiv-skin-default.css',
+        '/static/socketjoy.ico':  f'{app_path}/static/socketjoy.ico',
+        '/favicon.ico':  f'{app_path}/static/socketjoy.ico',
     }
 
     # create a Socket.IO server
@@ -132,7 +141,7 @@ def main():
     def connect(sid, environ):
         CLIENTS[sid] = environ['REMOTE_ADDR']
         logger.info(f'New client connected from {environ["REMOTE_ADDR"]}')
-        logger.debug(f'Client [{CLIENTS[sid]}] : with {sid=}')
+        logger.debug(f'Client [{CLIENTS[sid]}] : with sid: {sid}')
 
     @sio.event
     def intro(sid, data):

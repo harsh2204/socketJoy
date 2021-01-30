@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=socketJoy
+GenericName=Virtual Gamepad
+Exec=socketjoy
+Icon=tk.harshg.socketjoy
+Terminal=true
+Type=Application
+Categories=
+Comment=Turn any smartphone into a virtual gamepad controller
