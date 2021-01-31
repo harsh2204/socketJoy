@@ -1,28 +1,76 @@
-# socketJoy
+# **socketJoy**
 
 Use your smartphone as a virtual xbox controller for your PC!
 
 [Demo Video](https://github.com/harsh2204/socketjoy/releases/tag/v0.1-alpha)
 
-### Quickstart
+## Quickstart
 
-```
-# Install script loader here
-```
+Download one of the pre-built binaries for your desired platform from [here](https://github.com/harsh2204/socketjoy/releases/)
+and simply execute the binary to get the server up and running. See [troubleshooting](#Troubleshooting) if you run into errors.
 
-#### Windows
 
+### Windows
+
+~WIP~
 
 ---
 
-#### Linux:
+### Linux:
 
-The following script is a quick way to get the server and client up and running with one command. The server and client will be installed in a directory called `virtual-controller`. 
+Clone the repo
 ```
-bash <(curl -s https://gist.githubusercontent.com/harsh2204/ad0edf5ef6298464fb5f6d50bd01196f/raw)
+git clone https://github.com/harsh2204/socketjoy.git
+cd socketjoy/
 ```
 
-To run the server again you can simply go into `virtual-controller/socket-joy` and run `./run.sh`.
+Setup a virtual env and activate it
+```
+python3 -m venv .venv
+
+# If source isn't available you can simply run the activate script
+
+source .venv/bin/activate 
+```
+
+Install the python dependencies
+
+```
+pip install -r socketjoy/requirements.txt
+```
+
+At this point you can try to run the server
+
+```
+cd socketjoy/
+python app.py
+
+# Run python app.py --help for more info 
+```
+
+#### Building the AppImage binary file (Optional)
+
+Install pyinstaller
+```
+pip install pyinstaller
+pyinstaller --version
+```
+
+**!** Install `appimagetool` using your distro's package manager
+
+You can now run `linux_build.sh` to start the build and packaging process.
+
+The AppImage binary will be placed in `dist/socketJoy.AppImage`. This is a portable binary that should work on other machines with the same architecture as your machine.
+
+
+## Troubleshooting
+
+### Windows 
+
+~WIP~
+
+### Linux 
+In case the permissions on your machine are restrictive, you must add a udev rule to allow the server to create the virtual controller with the right permissions, run the server with `--setup` arguement. 
 
 ## **Credits**
 * [joydiv](https://github.com/qbolec/Joydiv) 

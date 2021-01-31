@@ -55,7 +55,7 @@ def parse_args():
     )
     parser.add_argument(
         '-p', '--port',
-        type=int, default=8013,
+        type=int, default=8022,
         help='Port the server will listen on. Defaults to 8013.',
     )
     parser.add_argument(
