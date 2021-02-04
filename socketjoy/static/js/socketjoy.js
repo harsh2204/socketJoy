@@ -10,7 +10,7 @@ function isLocalNetwork(hostname = window.location.hostname) {
   )
 }
 var isLocal = isLocalNetwork();
-// var isLocal = true;
+// var isLocal = false;
 
 var sock;
 var lat;
@@ -18,12 +18,17 @@ if (isLocal) {
   sock = io();
 
   // Start measuring connection latency
-  lat = 0;
-  sock.on('pong', function(ms) {
-    lat = ms;
-    document.getElementById("stats").innerHTML = "latency: " + ms + "ms";
-    document.getElementById("stats").style.display = "block";
-  });
+  lat = setInterval(() => {
+    const start = Date.now();
+
+    // volatile, so the packet will be discarded if the socket is not connected
+    sock.volatile.emit("ping", () => {
+      const latency = Date.now() - start;
+      document.getElementById("stats").innerHTML = "latency: " + latency + "ms";
+      document.getElementById("stats").style.display = "block";
+
+    });
+  }, 10000);
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
@@ -34,14 +39,10 @@ if (isLocal) {
 var conf = document.getElementsByClassName('configure')
 
 // Rewrite this method to a propper modal-based config menu
-function updateIP() {
-  var ip = prompt('Please enter the j2dx server IP')
-  console.log(ip)
-  if (ip !== null) {
-    SERVER_IP = ip;
-    sock.close();
-    sock = io(SERVER_IP);
-  }
+function toggleConfig() {
+  // Toggle class for config
+  var opt = document.getElementsByClassName("options-menu")[0];
+  opt.classList.toggle("visible")
 }
 
 function send_input(key, value) {

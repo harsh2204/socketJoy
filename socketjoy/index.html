@@ -23,8 +23,19 @@
       For iOS users, it is recommended you add this page to your homescreen and run it from there!
     </div>
   </div>
+  <div class="options-menu">
+    <button class="configure" onclick="toggleConfig()"><span>&#9881;</span></button>
+    <div class="items">
+      <input class="url" type="url" name="address">
+      <input class="stats-cb" type="checkbox" name="stats">
+      <label for="stats">Show network statistics</label><br>
+    </div>
+  </div>
   <div class="container">
-  <div id="demo">This is a demo only! Download and serve the repo locally to test the gamepad</div>
+  <div style="z-index: 100;" id="demo">Demo Mode
+    <br>
+    See instructions <a href="https://github.com/harsh2204/socketjoy" target="_blank" rel="noopener noreferrer"> here</a>
+  </div>
   <div id="stats">
   </div>
   <p>Socket Joy Alpha</p>
@@ -89,7 +100,7 @@
         <button class="button unselectable" id="a-button">A</button>
       </div>
     </div>
-    <button class="configure" onclick="updateIP()"><span>&#9881;</span></button>
+    <button class="configure" onclick="toggleConfig()"><span>&#9881;</span></button>
   </div>
 </body>
 <script charset="UTF-8" src="/static/js/joydiv.js"></script>
