@@ -83,9 +83,9 @@ class GamepadDevice(Device):
 		'left-button': e.ABS_HAT0X,
 	}
 
-	def __init__(self, device, addr):
+	def __init__(self, device, addr, name=None):
 		super().__init__(device, addr)
-		self.type = "socketJoy Gamepad"
+		self.type = f"socketJoy Gamepad - [{name if name else ''}]"
 		self._ui = UInput(
 			events=self.capabilities,
 			name=self.type,
@@ -94,6 +94,8 @@ class GamepadDevice(Device):
 			version=0x0110,
 			bustype=e.BUS_USB,
 		)
+		if name:
+			self.name = name
 
 	def send(self, key, value):
 		if key in self.buttons:

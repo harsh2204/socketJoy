@@ -4,6 +4,7 @@ body {
   height: 100%;
   width: 100%;
   padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -354,4 +355,38 @@ body {
   font-size: 1.5em;
   color:firebrick;
   opacity: 50%;
+}
+
+#alias{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background-color: #1289a7;
+}
+#alias > input{
+  width: 50%;
+  height: 10%;
+}
+
+
+#connect{
+  background-color:forestgreen;
+  border: solid 1px crimson;
+  color: white;
+  margin-top: 20px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#connect:disabled{
+
+  background-color: crimson;
+  border-color: white;
 }

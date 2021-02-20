@@ -5,6 +5,8 @@ import platform
 import socket
 from argparse import ArgumentParser
 import qrcode
+import qrcode.image.svg
+from xml.etree import ElementTree
 import socketio
 from eventlet import wsgi, listen
 
@@ -59,6 +61,11 @@ def parse_args():
         help='Port the server will listen on. Defaults to 8013.',
     )
     parser.add_argument(
+        '-f', '--device',
+        default=None,
+        help='Device to serve the application on.(eg, wlan0)'
+    )
+    parser.add_argument(
         '-d', '--debug',
         action='store_true',
         help='Print debug information.',
@@ -90,7 +97,15 @@ def get_ip_address(ifname): # This function retrieves network device address fro
     )[20:24])
 
 
-def default_host():
+def default_host(device=None):
+    if device:
+        try:
+            return get_ip_address(device)
+        except OSError as e:
+            print("Something went wrong!")
+            print(e)
+            print("\nTrying the default hostnames")
+
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         sock.connect(('1.255.255.255', 1))
@@ -121,6 +136,7 @@ def main():
 
     static_files = {
         '/': f'{app_path}/index.html',
+        '/lobby': f'{app_path}/lobby.html',
         '/static/js/socket.io.min.js': f'{app_path}/static/js/socket.io.min.js',
         '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
         '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
@@ -145,9 +161,10 @@ def main():
 
     @sio.event
     def intro(sid, data):
-        DEVICES[sid] = GamepadDevice(data['device'], CLIENTS[sid])
+        DEVICES[sid] = GamepadDevice(data['device'], CLIENTS[sid], data['alias'])
         logger.info(
             f'Client [{CLIENTS[sid]}] : device creation complete as a {data["device"]}')
+        sio.emit('controllers', [x.name for x in DEVICES.values()])
 
     @sio.event
     def input(sid, data):
@@ -156,13 +173,20 @@ def main():
 
     @sio.event
     def disconnect(sid):
-        device = DEVICES.pop(sid)
-        logger.info(f'Client [{device.address}] : disconnected (device : {device.device})')
-        device.close()
+        if sid in DEVICES:
+            device = DEVICES.pop(sid)
+            logger.info(f'Client [{device.address}] : disconnected (device : {device.device})')
+            device.close()
+        sio.emit('controllers', [x.name for x in DEVICES.values()])
+
+    @sio.on('fetchstuff')
+    def send_controllers(sid):
+        sio.emit('controllers', [x.name for x in DEVICES.values()])
+        sio.emit('qrcode', {'qr' : qr_img.decode('utf-8'), 'ip' : serv_ip}, room=sid)
 
 
     try:
-        host = args.host or default_host()
+        host = args.host or default_host(args.device)
         sock = listen((host, args.port))
     except PermissionError:
         sys.exit(
@@ -172,14 +196,17 @@ def main():
 
     logger.info(f'Listening on http://{host}:{args.port}/')
 
-    qr = qrcode.QRCode()
-    qr.add_data(f'http://{host}:{args.port}/')
+    serv_ip = f'http://{host}:{args.port}/' 
+    qr = qrcode.QRCode(box_size=20)
+    qr.add_data(serv_ip)
     if platform.system() == 'Windows':
         import colorama
         colorama.init()
-    qr.print_ascii()
+    # qr.print_ascii()
+    qr_img = qr.make_image(fill_color="black", back_color="white", image_factory=qrcode.image.svg.SvgImage)
+    qr_img = ElementTree.tostring(qr_img._img, encoding='UTF-8', method='xml')
 
-    wsgi.server(sock, app, log=wsgi_logger, log_output=args.debug, debug=True)
+    wsgi.server(sock, app, log=wsgi_logger, log_output=args.debug, debug=False)
 
 
 

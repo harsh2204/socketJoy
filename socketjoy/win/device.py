@@ -80,9 +80,9 @@ class GamepadDevice(Device):
 		'right-stick-X': 'sThumbRX',
 	}
 
-	def __init__(self, device, addr):
+	def __init__(self, device, addr, name):
 		super().__init__(device, addr)
-		self.type = "socketJoy Gamepad"
+		self.type = f"socketJoy Gamepad - [{name if name else ''}]"
 		self._target = vigem.target_x360_alloc()
 		self._wButtons = set()
 		self._report = vigem.XUSB_REPORT(
@@ -95,6 +95,8 @@ class GamepadDevice(Device):
 			sThumbRY=0,
 		)
 		self._create_device()
+		if name:
+			self.name = name
 
 	def send(self, key, value):
 		if key in self.buttons:

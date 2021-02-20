@@ -10,13 +10,18 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
-  <title>SocketJoy</title>
+  <title>socketJoy</title>
   <link href="/static/css/joydiv-skin-default.css" rel="stylesheet" />
   <link href="/static/css/style.css" rel="stylesheet" />
   <link rel="apple-touch-icon" href="/static/socketjoy.ico">
 </head>
 
 <body>
+  <div id="alias">
+      <span >Please enter an alias/name for the virtual controller</span>
+      <input id="username" type="text" name="username" onkeyup="stoppedTyping()">
+      <button id="connect" disabled onclick="send_intro()">Connect</button>
+  </div>
   <div id='turn'>
     Use your device in landscape orientation
     <div class="small">
@@ -26,9 +31,12 @@
   <div class="options-menu">
     <button class="configure" onclick="toggleConfig()"><span>&#9881;</span></button>
     <div class="items">
+      <input class="username" type="text" name="username">
       <input class="url" type="url" name="address">
-      <input class="stats-cb" type="checkbox" name="stats">
-      <label for="stats">Show network statistics</label><br>
+      <div class="stats-cb-container">
+        <input class="stats-cb" type="checkbox" name="stats">
+        <label for="stats">Network Stats</label><br>
+      </div>
     </div>
   </div>
   <div class="container">
@@ -38,7 +46,7 @@
   </div>
   <div id="stats">
   </div>
-  <p>Socket Joy Alpha</p>
+  <p>socketJoy Alpha</p>
     <div class="bumpers">
       <div id="left-bumper">L</div>
       <div id="right-bumper">R</div>

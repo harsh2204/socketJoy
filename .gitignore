@@ -1,7 +1,7 @@
 *.zip
 *__pycache__*
-sj.out
 .venv/
+.vscode/
 build
 dist
 scratchpad.py

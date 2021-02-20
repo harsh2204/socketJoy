@@ -26,14 +26,13 @@ if (isLocal) {
       const latency = Date.now() - start;
       document.getElementById("stats").innerHTML = "latency: " + latency + "ms";
       document.getElementById("stats").style.display = "block";
-
     });
   }, 10000);
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
   demo.style.display = 'block';
-  document.title = "SocketJoy Demo";
+  document.title = "socketJoy Demo";
 }
 
 var conf = document.getElementsByClassName('configure')
@@ -71,7 +70,7 @@ function createButton(id, dblClick = false) {
             }
             button.removeAttribute("data-dblclick");
           }, DBL_TAP_THRESH);
-        } else{
+        } else {
           button.removeAttribute("data-dblclick");
           // Action for double click
           button.style.border = '1px solid white'
@@ -86,8 +85,8 @@ function createButton(id, dblClick = false) {
   button.addEventListener(
     "touchend",
     function (e) {
-      if (dblClick){
-        if (button.getAttribute('btn-locked') == 1){
+      if (dblClick) {
+        if (button.getAttribute('btn-locked') == 1) {
           // Prevent button unpress if button is locked
           return;
         }
@@ -205,6 +204,42 @@ j2.addEventListener("joydiv-changed", function (e) {
 });
 
 
+function send_intro() {
+  sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: document.getElementById('username').value });
+  document.getElementsByTagName("img")[0].style.filter =
+    "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
+  CONNECTED = true;
+  setTimeout(() => {
+    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+  }, 5000);
+  document.getElementById('alias').style.display = "none";
+
+}
+
+function stoppedTyping() {
+  var text_input = document.getElementById('username')
+  if (text_input.value.length > 0) {
+    document.getElementById('connect').disabled = false;
+    saveValue(text_input)
+  } else {
+    document.getElementById('connect').disabled = true;
+  }
+}
+
+function saveValue(e) {
+  var id = e.id;  // get the sender's id to save it . 
+  var val = e.value; // get the value. 
+  localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+}
+
+//get the saved value function - return the value of "v" from localStorage. 
+function getSavedValue(v) {
+  if (!localStorage.getItem(v)) {
+    return "";// You can change this to your defualt value. 
+  }
+  return localStorage.getItem(v);
+}
+
 // Initialize virtual controller
 if (isLocal) {
   // Press the xbox button to initialize the controller!
@@ -212,20 +247,18 @@ if (isLocal) {
   sock.on("disconnect", () => {
     document.getElementsByTagName("img")[0].style.filter =
       "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
-      CONNECTED = false;
+    CONNECTED = false;
   });
   sock.on("connect", () => {
-    sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
-    document.getElementsByTagName("img")[0].style.filter =
-      "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
-    CONNECTED = true;
-    setTimeout(() => {
-      document.getElementsByTagName("img")[0].style.filter = "invert(0)";
-    }, 5000);
+    // Enable connect button, if the username is already stored (Maybe autoconnect in this case?)
+    document.getElementById('username').value = getSavedValue('username')
+    if (document.getElementById('username').value.length > 0) {
+      document.getElementById('connect').disabled = false;
+    }
   });
   // Prevent conext menu from popping up on long press
-  window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
-  
+  window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
   // setTimeout(() =>{
   //   if (CONNECTED == false){
   //     conf[0].click();
