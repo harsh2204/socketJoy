@@ -208,7 +208,6 @@ function send_intro() {
   sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: document.getElementById('username').value });
   document.getElementsByTagName("img")[0].style.filter =
     "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
-  CONNECTED = true;
   setTimeout(() => {
     document.getElementsByTagName("img")[0].style.filter = "invert(0)";
   }, 5000);
@@ -216,28 +215,9 @@ function send_intro() {
 
 }
 
-function stoppedTyping() {
-  var text_input = document.getElementById('username')
-  if (text_input.value.length > 0) {
-    document.getElementById('connect').disabled = false;
-    saveValue(text_input)
-  } else {
-    document.getElementById('connect').disabled = true;
-  }
-}
-
-function saveValue(e) {
-  var id = e.id;  // get the sender's id to save it . 
-  var val = e.value; // get the value. 
-  localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
-}
-
-//get the saved value function - return the value of "v" from localStorage. 
-function getSavedValue(v) {
-  if (!localStorage.getItem(v)) {
-    return "";// You can change this to your defualt value. 
-  }
-  return localStorage.getItem(v);
+function stoppedTyping(e) {
+  document.getElementById('connect').disabled = !(e.value.length > 0)  // Only enable the connect button if textbox isn't empty
+  localStorage.setItem('username', document.getElementById('username').value)
 }
 
 // Initialize virtual controller
@@ -250,11 +230,10 @@ if (isLocal) {
     CONNECTED = false;
   });
   sock.on("connect", () => {
+    CONNECTED = true;
     // Enable connect button, if the username is already stored (Maybe autoconnect in this case?)
-    document.getElementById('username').value = getSavedValue('username')
-    if (document.getElementById('username').value.length > 0) {
-      document.getElementById('connect').disabled = false;
-    }
+    document.getElementById('username').value = localStorage.getItem('username')
+    document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
   // Prevent conext menu from popping up on long press
   window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
