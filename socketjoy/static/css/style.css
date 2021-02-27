@@ -32,11 +32,18 @@ body {
 .options-menu.visible{
   display: flex;
 }
-.options-menu.items > input{
+.opt-items > input{
   width: 60%;
   height: 10%;
   margin: 20px; 
   text-align: center;
+}
+
+.opt-items {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
@@ -57,15 +64,48 @@ body {
   left: 0;
 }
 
+.hamburger{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  z-index: 100;
+}
+.hamburger-icon{
+  font-size: 25px;
+  text-decoration:none; 
+}
+
+.nav-items{
+  display: none;
+}
+.nav-items.visible{
+  display: grid;
+}
+
+/* Lobby button */
+.qricon{
+  font-size: 25px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
 /* Cog button */
 .configure{
   font-size: 30px;
   background: transparent;
   border: none;
-  position: absolute;
   padding: 0;
-  top: 0px;
-  right: 0px;
+}
+/* cross button */
+.close-config{
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* Triggers */
@@ -369,8 +409,12 @@ body {
   background-color: #1289a7;
 }
 #alias > input{
-  width: 50%;
-  height: 10%;
+  margin-top: 20px;
+  width: 25%;
+  height: 5%;
+  padding: 20px;
+  text-align: center;
+  font-size: 3vw;
 }
 
 
@@ -389,4 +433,24 @@ body {
 
   background-color: crimson;
   border-color: white;
+}
+
+.qrcode{
+  display: none;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #1289a7;
+  opacity: 0.9;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.qrcode.visible{
+  display: flex;
+  flex-direction: column;
+}
+#qrcode > svg{
+  opacity: 1;
 }

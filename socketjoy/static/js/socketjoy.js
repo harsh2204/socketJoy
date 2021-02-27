@@ -25,9 +25,15 @@ if (isLocal) {
     sock.volatile.emit("ping", () => {
       const latency = Date.now() - start;
       document.getElementById("stats").innerHTML = "latency: " + latency + "ms";
-      document.getElementById("stats").style.display = "block";
+      // document.getElementById("stats").style.display = "block";
     });
   }, 10000);
+
+
+  sock.emit("fetchstuff");
+  sock.on("qrcode", (data) => {
+      document.getElementById("qrcode").innerHTML = data.qr
+  });
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
@@ -42,6 +48,14 @@ function toggleConfig() {
   // Toggle class for config
   var opt = document.getElementsByClassName("options-menu")[0];
   opt.classList.toggle("visible")
+}
+
+function toggleStats(ev){
+  if (ev.checked){
+    document.getElementById('stats').style.display = "block";
+  } else {
+    document.getElementById('stats').style.display = "none";
+  }
 }
 
 function send_input(key, value) {
@@ -233,6 +247,7 @@ if (isLocal) {
     CONNECTED = true;
     // Enable connect button, if the username is already stored (Maybe autoconnect in this case?)
     document.getElementById('username').value = localStorage.getItem('username')
+    document.getElementsByClassName('username')[0].value = localStorage.getItem('username')
     document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
   // Prevent conext menu from popping up on long press

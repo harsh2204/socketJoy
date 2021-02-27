@@ -144,6 +144,7 @@ def main():
         '/static/css/joydiv-skin-default.css': f'{app_path}/static/css/joydiv-skin-default.css',
         '/static/socketjoy.ico':  f'{app_path}/static/socketjoy.ico',
         '/favicon.ico':  f'{app_path}/static/socketjoy.ico',
+        '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
     }
 
     # create a Socket.IO server
