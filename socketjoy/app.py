@@ -136,15 +136,16 @@ def main():
 
     static_files = {
         '/': f'{app_path}/index.html',
-        '/lobby': f'{app_path}/lobby.html',
+        '/lobby': f'{app_path}/static/lobby.html',
         '/static/js/socket.io.min.js': f'{app_path}/static/js/socket.io.min.js',
         '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
         '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
         '/static/css/style.css': f'{app_path}/static/css/style.css',
         '/static/css/joydiv-skin-default.css': f'{app_path}/static/css/joydiv-skin-default.css',
-        '/static/socketjoy.ico':  f'{app_path}/static/socketjoy.ico',
-        '/favicon.ico':  f'{app_path}/static/socketjoy.ico',
+        '/static/socketjoy.ico':  f'{app_path}/static/favicon.ico',
+        '/favicon.ico':  f'{app_path}/static/favicon.ico',
         '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
+        '/static/gh-logo.png':  f'{app_path}/static/gh-logo.png',
     }
 
     # create a Socket.IO server

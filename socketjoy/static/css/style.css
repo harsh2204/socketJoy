@@ -82,6 +82,10 @@ body {
 .nav-items.visible{
   display: grid;
 }
+#gh-logo{
+  left: 5px;
+  position: relative;
+}
 
 /* Lobby button */
 .qricon{
@@ -203,6 +207,7 @@ body {
 }
 #main-button img {
   width: 50px;
+  border-radius: 15px;
   filter: invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg)
     brightness(102%) contrast(70%);
 }

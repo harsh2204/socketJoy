@@ -23,7 +23,7 @@
       <input id="username" type="text" name="username" onkeyup="stoppedTyping(this)">
       <button id="connect" disabled onclick="send_intro()">Connect</button>
   </div>
-  <div id='turn'>
+  <div id="turn">
     Use your device in landscape orientation
     <div class="small">
       For iOS users, it is recommended you add this page to your homescreen and run it from there!
@@ -31,7 +31,7 @@
   </div>
   <div class="qrcode"> 
     <div id="qrcode">QR CODE HERE</div>
-    <span>Scan the qrcode to connect another controller.<br>Ensure you're on the same network as this device</span>
+    <span>Scan the qr-code to connect other devices.<br>Ensure you're on the same network as this device</span>
   </div>
   <div class="options-menu">
     <button class="close-config" onclick="toggleConfig()"><span>✖</span></button>
@@ -47,7 +47,7 @@
   <div class="container">
   <div style="z-index: 100;" id="demo">Demo Mode
     <br>
-    See instructions <a href="https://github.com/harsh2204/socketjoy" target="_blank" rel="noopener noreferrer"> here</a>
+    Explore more<a href="https://github.com/harsh2204/socketjoy" target="_blank" rel="noopener noreferrer"> here</a>
   </div>
   <div id="stats" style="display: none;">
   </div>
@@ -79,7 +79,7 @@
       <button id="start-button">START</button>
     </div>
     <div class="bottom-row">
-      <div id='joystick1' class="joydiv-controller unselectable">
+      <div id="joystick1" class="joydiv-controller unselectable">
         <div class="joydiv-up"></div>
         <div class="joydiv-left"></div>
         <div class="joydiv-right"></div>
@@ -88,7 +88,7 @@
           <div class="joydiv-tracker"></div>
         </div>
       </div>
-    <div id='dpad' class="joydiv-controller">
+    <div id="dpad" class="joydiv-controller">
       <div class="joydiv-up"></div>
       <div class="joydiv-left"></div>
       <div class="joydiv-right"></div>
@@ -97,7 +97,7 @@
         <div class="joydiv-tracker"></div>
       </div>
     </div>
-    <div id='joystick2' class="joydiv-controller unselectable">
+    <div id="joystick2" class="joydiv-controller unselectable">
       <div class="joydiv-up"></div>
       <div class="joydiv-left"></div>
       <div class="joydiv-right"></div>
@@ -120,6 +120,7 @@
         <div id="nav-items" class="nav-items">
           <button class="configure" onclick="toggleConfig()"><span>&#9881;</span></button>
           <button class="qricon" onclick="document.getElementsByClassName('qrcode')[0].classList.toggle('visible')" ><img src="static/qrcode.ico" alt="qrcode" height="20" width="20"/></button>
+          <a href="https://github.com/harsh2204/socketjoy" target="_blank"><img id="gh-logo" src="static/gh-logo.png" width="20" height="20"></a>
         </div>
     </div>
   </div>

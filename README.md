@@ -1,5 +1,4 @@
-# **socketJoy**
-
+![socketJoy-logo](./assets/socketJoy-logo.png)
 Use your smartphone as a virtual xbox controller for your PC!
 
 [Demo Video](https://github.com/harsh2204/socketjoy/releases/tag/v0.1-alpha)
@@ -17,12 +16,7 @@ and simply execute the binary to get the server up and running. See [troubleshoo
 
 ---
 
-### Windows
-
-_WIP_
-
-
-### Linux:
+### Windows & Linux
 
 Clone the repo
 ```
@@ -34,9 +28,11 @@ Setup a virtual env and activate it
 ```
 python3 -m venv .venv
 
-# If source isn't available you can simply run the activate script
-
+# Linux
 source .venv/bin/activate 
+
+# Windows
+.venv\Scripts\activate.bat
 ```
 
 Install the python dependencies
