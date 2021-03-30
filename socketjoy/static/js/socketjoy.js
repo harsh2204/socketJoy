@@ -226,7 +226,6 @@ function send_intro() {
     document.getElementsByTagName("img")[0].style.filter = "invert(0)";
   }, 5000);
   document.getElementById('alias').style.display = "none";
-
 }
 
 function stoppedTyping(e) {
@@ -250,8 +249,10 @@ if (isLocal) {
     document.getElementsByClassName('username')[0].value = localStorage.getItem('username')
     document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
+
   // Prevent conext menu from popping up on long press
   window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
 
   // setTimeout(() =>{
   //   if (CONNECTED == false){
