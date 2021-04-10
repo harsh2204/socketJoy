@@ -197,9 +197,11 @@ def main():
             f'Please specify a different port with -p option.'
         )
 
-    logger.info(f'Listening on http://{host}:{args.port}/')
-
     serv_ip = f'http://{host}:{args.port}/' 
+
+    logger.info(f'Listening on {serv_ip}')
+    logger.info(f"Check {serv_ip}lobby for more info")
+
     qr = qrcode.QRCode(box_size=20)
     qr.add_data(serv_ip)
     if platform.system() == 'Windows':

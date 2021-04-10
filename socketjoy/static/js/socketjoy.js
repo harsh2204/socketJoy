@@ -251,7 +251,7 @@ if (isLocal) {
   });
 
   if (localStorage.getItem('prompt-cb-val') == true){
-  console.log(localStorage.getItem('prompt-cb-val'))
+    console.log(localStorage.getItem('prompt-cb-val'))
     document.getElementsByClassName('prompt-cb')[0].checked = true
     document.getElementById('alias').style.display = "none"
     send_intro()
