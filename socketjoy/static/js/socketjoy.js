@@ -219,13 +219,13 @@ j2.addEventListener("joydiv-changed", function (e) {
 
 
 function send_intro() {
-  sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: document.getElementById('username').value });
+  sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: localStorage.getItem('username')});
   document.getElementsByTagName("img")[0].style.filter =
     "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
   setTimeout(() => {
     document.getElementsByTagName("img")[0].style.filter = "invert(0)";
   }, 5000);
-  document.getElementById('alias').style.display = "none";
+    document.getElementById('alias').style.display = "none";
 }
 
 function stoppedTyping(e) {
@@ -250,13 +250,13 @@ if (isLocal) {
     document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
 
+  if (localStorage.getItem('prompt-cb-val') == true){
+  console.log(localStorage.getItem('prompt-cb-val'))
+    document.getElementsByClassName('prompt-cb')[0].checked = true
+    document.getElementById('alias').style.display = "none"
+    send_intro()
+  }
   // Prevent conext menu from popping up on long press
   window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
   document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
-
-  // setTimeout(() =>{
-  //   if (CONNECTED == false){
-  //     conf[0].click();
-  //   }
-  // }, 500);
 }

@@ -141,11 +141,11 @@ def main():
         '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
         '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
         '/static/css/style.css': f'{app_path}/static/css/style.css',
-        '/static/css/joydiv-skin-default.css': f'{app_path}/static/css/joydiv-skin-default.css',
         '/static/socketjoy.ico':  f'{app_path}/static/favicon.ico',
         '/favicon.ico':  f'{app_path}/static/favicon.ico',
         '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
         '/static/gh-logo.png':  f'{app_path}/static/gh-logo.png',
+        '/manifest.json':  f'{app_path}/static/manifest.json',
     }
 
     # create a Socket.IO server
@@ -164,6 +164,7 @@ def main():
     @sio.event
     def intro(sid, data):
         DEVICES[sid] = GamepadDevice(data['device'], CLIENTS[sid], data['alias'])
+        print(sid, data)
         logger.info(
             f'Client [{CLIENTS[sid]}] : device creation complete as a {data["device"]}')
         sio.emit('controllers', [x.name for x in DEVICES.values()])

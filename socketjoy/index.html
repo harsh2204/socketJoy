@@ -12,8 +12,8 @@
   <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
   <title>socketJoy</title>
-  <link href="/static/css/joydiv-skin-default.css" rel="stylesheet" />
-  <link href="/static/css/style.css" rel="stylesheet" />
+  <link rel="manifest" href="/manifest.json">
+  <link href="/static/css/style.css" rel="stylesheet"/>
   <link rel="apple-touch-icon" href="/static/socketjoy.ico">
 </head>
 
@@ -22,6 +22,10 @@
       <span >Please enter an alias/name for the virtual controller</span>
       <input id="username" type="text" name="username" onkeyup="stoppedTyping(this)">
       <button id="connect" disabled onclick="send_intro()">Connect</button>
+      <div class="prompt-cb-container">
+        <input class="prompt-cb" type="checkbox" name="rememberName" onchange="localStorage.setItem('prompt-cb-val', this.checked)">
+        <label for="rememberName">Don't ask again?</label>
+      </div>
   </div>
   <div id="turn">
     Use your device in landscape orientation
@@ -36,7 +40,7 @@
   <div class="options-menu">
     <button class="close-config" onclick="toggleConfig()"><span>✖</span></button>
     <div class="opt-items">
-      <input class="username" type="text" name="username">
+      <input class="username" type="text" name="username" onkeyup="stoppedTyping(this)">
       <input class="url" type="url" name="address" placeholder="server address" disabled>
       <div class="stats-cb-container">
         <input class="stats-cb" type="checkbox" name="stats" onchange="toggleStats(this)">
@@ -51,7 +55,6 @@
   </div>
   <div id="stats" style="display: none;">
   </div>
-  <p>socketJoy Alpha</p>
     <div class="bumpers">
       <div id="left-bumper">L</div>
       <div id="right-bumper">R</div>
