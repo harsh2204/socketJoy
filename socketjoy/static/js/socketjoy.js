@@ -228,6 +228,10 @@ function send_intro() {
     document.getElementById('alias').style.display = "none";
 }
 
+function savecbState(e){
+  localStorage.setItem('prompt-cb-val', e.checked | 0)
+}
+
 function stoppedTyping(e) {
   document.getElementById('connect').disabled = !(e.value.length > 0)  // Only enable the connect button if textbox isn't empty
   localStorage.setItem('username', document.getElementById('username').value)
@@ -250,13 +254,16 @@ if (isLocal) {
     document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
 
-  if (localStorage.getItem('prompt-cb-val') == true){
-    console.log(localStorage.getItem('prompt-cb-val'))
-    document.getElementsByClassName('prompt-cb')[0].checked = true
-    document.getElementById('alias').style.display = "none"
-    send_intro()
-  }
   // Prevent conext menu from popping up on long press
   window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
   document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+}
+
+
+window.onload = (ev) =>{
+  if (localStorage.getItem('prompt-cb-val')){
+    console.log(localStorage.getItem('prompt-cb-val'))
+    document.getElementsByClassName('prompt-cb')[0].checked = true
+    send_intro()
+  }
 }

@@ -23,7 +23,7 @@
       <input id="username" type="text" name="username" onkeyup="stoppedTyping(this)">
       <button id="connect" disabled onclick="send_intro()">Connect</button>
       <div class="prompt-cb-container">
-        <input class="prompt-cb" type="checkbox" name="rememberName" onchange="localStorage.setItem('prompt-cb-val', this.checked)">
+        <input class="prompt-cb" type="checkbox" name="rememberName" onchange="savecbState(this)">
         <label for="rememberName">Don't ask again?</label>
       </div>
   </div>
