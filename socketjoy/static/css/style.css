@@ -410,7 +410,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  background-color: #3A7170;
+  background-color: #2C394A;
+  color: #DAFBFC;
 }
 #alias > input{
   margin-top: 20px;

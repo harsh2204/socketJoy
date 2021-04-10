@@ -154,6 +154,7 @@ def main():
 
     app = socketio.WSGIApp(sio, static_files=static_files)
 
+    # TODO: Add service-worker to handle caching/installing the static files and put the ip in localStorage
 
     @sio.event
     def connect(sid, environ):
