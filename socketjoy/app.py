@@ -141,7 +141,7 @@ def main():
         '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
         '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
         '/static/css/style.css': f'{app_path}/static/css/style.css',
-        '/static/socketjoy.ico':  f'{app_path}/static/favicon.ico',
+        '/socketjoy.svg':  {'filename': f'{app_path}/static/socketjoy.svg', 'content_type': 'image/svg+xml'},
         '/favicon.ico':  f'{app_path}/static/favicon.ico',
         '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
         '/static/gh-logo.png':  f'{app_path}/static/gh-logo.png',

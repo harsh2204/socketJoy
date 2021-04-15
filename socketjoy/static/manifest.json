@@ -3,12 +3,12 @@
   "name": "socketJoy : Virtual Smartphone Controller using WebSockets",
   "icons": [
     {
-      "src": "/static/socketjoy.ico",
-      "sizes":"512x512 64x64",
+      "src": "/socketjoy.svg",
+      "sizes":"256x256",
       "purpose": "any maskable"
     }
   ],
-  "background_color": "#3367D6",
+  "background_color": "#5A717A",
   "display": "standalone",
   "start_url": "./",
   "scope": ".",
