@@ -11,12 +11,11 @@ Checkout the frontend demo [here](https://gamepad.harshgupta.dev)
 
 ## Quickstart
 
-Download one of the pre-built binaries for your desired platform from [here](https://github.com/harsh2204/socketjoy/releases/)
-and simply execute the binary to get the server up and running. See [troubleshooting](#Troubleshooting) if you run into errors.
+Download one of the pre-built binaries for your desired platform from [releases](https://github.com/harsh2204/socketjoy/releases/) and simply execute the binary to get the server up and running.
 
 ---
 
-### Windows & Linux
+### Manual Setup (Windows & Linux)
 
 Clone the repo
 ```
@@ -45,6 +44,12 @@ At this point you can try to run the server
 
 ```
 cd socketjoy/
+
+# Setup
+# Note - Higher system privileges are required to setup this program.
+python app.py --setup
+
+# Run server
 python app.py
 
 # Run python app.py --help for more info 
@@ -63,16 +68,6 @@ pyinstaller --version
 You can now run `linux_build.sh` to start the build and packaging process.
 
 The AppImage binary will be placed in `dist/socketJoy.AppImage`. This is a portable binary that should work on other machines with the same architecture as your machine.
-
-
-## Troubleshooting
-
-### Windows 
-
-_WIP_
-
-### Linux 
-In case the permissions on your machine are restrictive, you must add a udev rule to allow the server to create the virtual controller with the right permissions, run the server with `--setup` arguement. 
 
 ## **Credits**
 * [joydiv](https://github.com/qbolec/Joydiv) 

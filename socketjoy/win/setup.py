@@ -6,7 +6,7 @@ from ctypes import windll, c_void_p, c_wchar_p, c_int
 
 
 VIGEM_REL = 'https://github.com/ViGEm/ViGEmBus/releases'
-VIGEM_URI = f'{VIGEM_REL}/download/v1.16.112/ViGEmBus_Setup_1.16.115.exe'
+VIGEM_URI = f'{VIGEM_REL}download/setup-v1.16.116/ViGEmBus_Setup_1.16.116.exe'
 
 
 SE_ERR_ACCESSDENIED = 5

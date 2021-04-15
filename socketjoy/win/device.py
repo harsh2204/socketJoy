@@ -103,7 +103,8 @@ class GamepadDevice(Device):
 			if value:
 				self._wButtons.add(self.buttons[key])
 			else:
-				self._wButtons.remove(self.buttons[key])
+				if (self.buttons[key] in self._wButtons):
+					self._wButtons.remove(self.buttons[key])
 		elif key in self.triggers:
 			if value:
 				setattr(self._report, self.triggers[key], vigem.XUSB_TRIGGER_MAX)
