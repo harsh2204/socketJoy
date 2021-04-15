@@ -127,6 +127,6 @@ else:
         upx_exclude=['vcruntime140.dll'],
         runtime_tmpdir=None,
         console=True,
-        icon='socketjoy/static/socketjoy.ico',
+        icon=f'assets/tk.harshg.{APP}.ico',
         version='assets/version.rc',
     )
