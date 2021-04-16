@@ -1,8 +1,8 @@
 ![socketJoy-logo](./assets/socketJoy-logo.png)
 Use your smartphone as a virtual xbox controller for your PC!
 
-[Demo Video](https://github.com/harsh2204/socketjoy/releases/tag/v0.1-alpha)
 
+![socketJoy-logo](./assets/controller-mockup.png)
 OR
 
 Checkout the frontend demo [here](https://gamepad.harshgupta.dev)
@@ -12,6 +12,8 @@ Checkout the frontend demo [here](https://gamepad.harshgupta.dev)
 ## Quickstart
 
 Download one of the pre-built binaries for your desired platform from [releases](https://github.com/harsh2204/socketjoy/releases/) and simply execute the binary to get the server up and running.
+
+To the run the server in debug mode, run the executable in a terminal with `-d` flag.
 
 ---
 
