@@ -397,7 +397,7 @@ body {
 /* blessed from https://code-boxx.com/lock-screen-orientation/ */
 @media only screen and (orientation:portrait){
   #turn{ display:block; }
-  #logo{ display:block; }
+  #logo{ display:flex; }
   .container{ display:none; }
 }
 @media only screen and (orientation:landscape){
