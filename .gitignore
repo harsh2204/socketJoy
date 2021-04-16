@@ -1,1 +1,9 @@
 *.zip
+*__pycache__*
+.venv/
+.vscode/
+build
+dist
+scratchpad.py
+*.egg-info
+bin

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="gray">
+  <meta name="apple-mobile-web-app-title" content="SocketJoy">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
+  <title>socketJoy</title>
+  <link rel="manifest" href="/manifest.json">
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link rel="apple-touch-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="alias">
+      <span >Please enter an alias/name for the virtual controller</span>
+      <input id="username" type="text" name="username" onkeyup="stoppedTyping(this)">
+      <button id="connect" disabled onclick="send_intro()">Connect</button>
+      <div class="prompt-cb-container">
+        <input class="prompt-cb" type="checkbox" name="rememberName" onchange="savecbState(this)">
+        <label for="rememberName">Don't ask again?</label>
+      </div>
+  </div>
+  <div id="turn">
+    Use your device in landscape orientation
+    <div class="small">
+      For iOS users, it is recommended you add this page to your homescreen and run it from there!
+    </div>
+  </div>
+  <div class="qrcode"> 
+    <div id="qrcode">QR CODE HERE</div>
+    <span>Scan the qr-code to connect other devices.<br>Ensure you're on the same network as this device</span>
+  </div>
+  <div class="options-menu">
+    <button class="close-config" onclick="toggleConfig()"><span>✖</span></button>
+    <div class="opt-items">
+      <input class="username" type="text" name="username" onkeyup="stoppedTyping(this)">
+      <input class="url" type="url" name="address" placeholder="server address" disabled>
+      <div class="stats-cb-container">
+        <input class="stats-cb" type="checkbox" name="stats" onchange="toggleStats(this)">
+        <label for="stats">Network Stats</label><br>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div style="z-index: 100;" id="demo">Demo Mode
+    <br>
+    Explore more<a href="https://github.com/harsh2204/socketjoy" target="_blank" rel="noopener noreferrer"> here</a>
+  </div>
+  <div id="stats" style="display: none;">
+  </div>
+    <div class="bumpers">
+      <div id="left-bumper">L</div>
+      <div id="right-bumper">R</div>
+    </div>
+    <div class="triggers">
+      <div class="trigger-div" id="left-trigger">
+        <div class="trigger-trackpad">
+          <div class="trigger-tracker">
+          </div>
+        </div>
+      </div>
+      <div class="trigger-div" id="right-trigger" >
+        <div class="trigger-trackpad">
+          <div class="trigger-tracker">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-btns">
+      <button id="back-button">BACK</button>
+      <button id="main-button">
+        <img src="/favicon.ico"></img>
+      </button>
+      <button id="start-button">START</button>
+    </div>
+    <div class="bottom-row">
+      <div id="joystick1" class="joydiv-controller unselectable">
+        <div class="joydiv-up"></div>
+        <div class="joydiv-left"></div>
+        <div class="joydiv-right"></div>
+        <div class="joydiv-down"></div>
+        <div class="joydiv-trackpad">
+          <div class="joydiv-tracker"></div>
+        </div>
+      </div>
+    <div id="dpad" class="joydiv-controller">
+      <div class="joydiv-up"></div>
+      <div class="joydiv-left"></div>
+      <div class="joydiv-right"></div>
+      <div class="joydiv-down"></div>
+      <div class="joydiv-trackpad">
+        <div class="joydiv-tracker"></div>
+      </div>
+    </div>
+    <div id="joystick2" class="joydiv-controller unselectable">
+      <div class="joydiv-up"></div>
+      <div class="joydiv-left"></div>
+      <div class="joydiv-right"></div>
+      <div class="joydiv-down"></div>
+      <div class="joydiv-trackpad">
+        <div class="joydiv-tracker"></div>
+      </div>
+    </div>
+      <div class="xbox">
+        <button class="button unselectable" id="y-button">Y</button>
+        <button class="button unselectable" id="x-button">X</button>
+        <button class="button unselectable" id="b-button">B</button>
+        <button class="button unselectable" id="a-button">A</button>
+      </div>
+    </div>
+    <div class="hamburger">
+        <a href="javascript:void(0);" class="hamburger-icon" onclick="document.getElementById('nav-items').classList.toggle('visible')">
+          🍔
+        </a>
+        <div id="nav-items" class="nav-items">
+          <button class="configure" onclick="toggleConfig()"><span>&#9881;</span></button>
+          <button class="qricon" onclick="document.getElementsByClassName('qrcode')[0].classList.toggle('visible')" ><img src="static/qrcode.ico" alt="qrcode" height="20" width="20"/></button>
+          <a href="https://github.com/harsh2204/socketjoy" target="_blank"><img id="gh-logo" src="static/gh-logo.png" width="20" height="20"></a>
+        </div>
+    </div>
+  </div>
+</body>
+<script charset="UTF-8" src="/static/js/joydiv.js"></script>
+<script src="/static/js/socket.io.min.js"></script>
+<script src="/static/js/socketjoy.js"></script>
+</html>

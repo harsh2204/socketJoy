@@ -4,26 +4,52 @@ body {
   height: 100%;
   width: 100%;
   padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
   margin: 0;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: gray;
+  background-color:#5A717A;
   overflow: hidden;
 }
 
 .small {
   font-size: 10px;
 }
+.options-menu{
+  height: 100%;
+  width: 100%;
+  background-color:#2C394A;
+  position: absolute;
+  z-index: 1;
+  justify-content: center;
+  /* align-items: center; */
+  display: none;
+}
+
+.options-menu.visible{
+  display: flex;
+}
+.opt-items > input{
+  width: 60%;
+  height: 10%;
+  margin: 20px; 
+  text-align: center;
+}
+
+.opt-items {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .container {
-  background-color: gray;
+  background-color: #5A717A;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  /* border:1px solid coral; */
   width: 100vw;
   height: 100%;
   touch-action: none; /* Disable panning and zooming  */
@@ -36,15 +62,52 @@ body {
   left: 0;
 }
 
+.hamburger{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  z-index: 100;
+}
+.hamburger-icon{
+  font-size: 25px;
+  text-decoration:none; 
+}
+
+.nav-items{
+  display: none;
+}
+.nav-items.visible{
+  display: grid;
+}
+#gh-logo{
+  left: 5px;
+  position: relative;
+}
+
+/* Lobby button */
+.qricon{
+  font-size: 25px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
 /* Cog button */
 .configure{
   font-size: 30px;
   background: transparent;
   border: none;
-  position: absolute;
   padding: 0;
-  top: 0px;
-  right: 0px;
+}
+/* cross button */
+.close-config{
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* Triggers */
@@ -65,7 +128,7 @@ body {
 }
 .trigger-div .trigger-trackpad{
   display: flex;
-  background-color:darkslategray;
+  background-color:#2C394A;
   height: 20vh;
   width: 4vw;
   padding: 10px;
@@ -75,7 +138,7 @@ body {
 }
 .trigger-div .trigger-tracker{
   position: absolute;
-  background-color: moccasin;
+  background-color: #EBEBEB;
   border-radius: 50%;
   padding: 3vw;
   margin-top: -2vh;
@@ -84,6 +147,7 @@ body {
 
 /*  BUMPER BUTTONS  */
 .bumpers{
+  color: #EBEBEB;
   position: absolute;
   display: flex;
   width: 100%;
@@ -100,14 +164,14 @@ body {
   padding: 10px;
   margin-left: 10vw;
   border-radius: 25px;
-  background-color: darkslategray;
+  background-color: #2C394A;
 }
 #right-bumper{
   width: 50px;
   margin-left:auto; margin-right:10vw;
   padding: 10px;
   border-radius: 25px;
-  background-color: darkslategray;
+  background-color: #2C394A;
 }
 .bottom-row{
   width: 100%;
@@ -142,6 +206,7 @@ body {
 }
 #main-button img {
   width: 50px;
+  border-radius: 15px;
   filter: invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg)
     brightness(102%) contrast(70%);
 }
@@ -217,7 +282,7 @@ body {
   background: black;
 }
 #dpad .joydiv-trackpad{
-  background-color: gray;
+  background-color: #EBEBEB;
 }
 
 /* RIGHT STICK */
@@ -334,4 +399,149 @@ body {
   font-size: 1.5em;
   color:firebrick;
   opacity: 50%;
+}
+
+#alias{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background-color: #2C394A;
+  color: #DAFBFC;
+}
+#alias > input{
+  margin-top: 20px;
+  width: 25%;
+  height: 5%;
+  padding: 20px;
+  text-align: center;
+  font-size: 3vw;
+}
+
+
+#connect{
+  background-color:forestgreen;
+  border: solid 1px crimson;
+  color: white;
+  margin-top: 20px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#connect:disabled{
+
+  background-color: crimson;
+  border-color: white;
+}
+.prompt-cb-container{
+  margin: 10px;
+}
+
+.qrcode{
+  display: none;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #8CAFAE;
+  opacity: 0.9;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.qrcode.visible{
+  display: flex;
+  flex-direction: column;
+}
+#qrcode > svg{
+  opacity: 1;
+}
+
+
+/* joydiv-skin-default.css */
+
+.joydiv-controller{
+  position:relative;
+  top:0;
+  left:0;
+}
+.joydiv-controller .joydiv-up,
+.joydiv-controller .joydiv-left,
+.joydiv-controller .joydiv-right,
+.joydiv-controller .joydiv-down{
+  position:absolute;
+  width:0;
+  height:0;
+  background: transparent;
+  border:solid transparent;
+  opacity: 0.2;
+}
+
+.joydiv-controller .joydiv-up{
+  top:0;
+  left:50%;
+  margin-left:-15%;
+  border-bottom-color: black;
+  border-top-width: 0;
+  border-left-width: .15em;
+  border-right-width: .15em;
+  border-bottom-width: .2em;
+}
+.joydiv-controller .joydiv-left{
+  left:0;
+  top:50%;
+  border-right-color: black;
+  border-top-width: .15em;
+  border-left-width: 0;
+  border-right-width: .2em;
+  border-bottom-width: .15em;
+  margin-top:-15%;
+}
+.joydiv-controller .joydiv-right{
+  right:0;
+  top:50%;
+  margin-top:-15%;
+  border-left-color: black;
+  border-top-width: .15em;
+  border-left-width: .2em;
+  border-right-width: 0;
+  border-bottom-width: .15em;
+}
+.joydiv-controller .joydiv-down{
+  bottom:0;
+  left:50%;
+  margin-left:-15%;
+  border-top-color: black;
+  border-top-width: .2em;
+  border-left-width: .15em;
+  border-right-width: .15em;
+  border-bottom-width: 0;
+}
+.joydiv-controller .joydiv-trackpad{
+  position:absolute;
+  left:30%;
+  right:30%;
+  top:30%;
+  bottom:30%;
+  background:#EBEBEB;
+  border-radius: 25px;
+  opacity: 0.6;
+}
+.joydiv-controller .joydiv-tracker{
+  position:absolute;
+  top:50%;
+  left:50%;
+  border-radius:50%;
+  border-style:solid;
+  border-width:.15em;
+  margin-left:-.15em;
+  margin-top:-.15em;
+  border-color: black;
+  opacity: 1;
 }

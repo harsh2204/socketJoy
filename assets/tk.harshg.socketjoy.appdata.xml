@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>tk.harshg.socketjoy</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0</project_license>
+	<name>socketJoy</name>
+	<summary>Virtual gamepad Server</summary>
+	<description>
+		<p>Turn any smartphone into a virtual gamepad controller. Requires a common wifi AP between the server and client</p>
+	</description>
+	<launchable type="desktop-id">tk.harshg.socketjoy.desktop</launchable>
+	<url type="homepage">https://github.com/harsh2204/socketJoy</url>
+	<provides>
+		<id>tk.harshg.socketjoy.desktop</id>
+	</provides>
+</component>

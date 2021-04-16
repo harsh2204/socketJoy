@@ -1,4 +1,3 @@
-var SERVER_IP = "192.168.2.92:8013";// Change your ip here
 var DBL_TAP_THRESH = 200; //ms 
 var CONNECTED = false;
 
@@ -16,32 +15,46 @@ var isLocal = isLocalNetwork();
 var sock;
 var lat;
 if (isLocal) {
-  sock = io(SERVER_IP);
+  sock = io();
 
   // Start measuring connection latency
-  lat = 0;
-  sock.on('pong', function(ms) {
-    lat = ms;
-    document.getElementById("stats").innerHTML = "latency: " + ms + "ms";
-    document.getElementById("stats").style.display = "block";
+  lat = setInterval(() => {
+    const start = Date.now();
+
+    // volatile, so the packet will be discarded if the socket is not connected
+    sock.volatile.emit("ping", () => {
+      const latency = Date.now() - start;
+      document.getElementById("stats").innerHTML = "latency: " + latency + "ms";
+      // document.getElementById("stats").style.display = "block";
+    });
+  }, 10000);
+
+
+  sock.emit("fetchstuff");
+  sock.on("qrcode", (data) => {
+      document.getElementById("qrcode").innerHTML = data.qr
   });
 } else {
   // Notify user that this is a demo only
   var demo = document.getElementById('demo');
   demo.style.display = 'block';
-  document.title = "SocketJoy Demo";
+  document.title = "socketJoy Demo";
 }
 
 var conf = document.getElementsByClassName('configure')
 
 // Rewrite this method to a propper modal-based config menu
-function updateIP() {
-  var ip = prompt('Please enter the j2dx server IP')
-  console.log(ip)
-  if (ip !== null) {
-    SERVER_IP = ip;
-    sock.close();
-    sock = io(SERVER_IP);
+function toggleConfig() {
+  // Toggle class for config
+  var opt = document.getElementsByClassName("options-menu")[0];
+  opt.classList.toggle("visible")
+}
+
+function toggleStats(ev){
+  if (ev.checked){
+    document.getElementById('stats').style.display = "block";
+  } else {
+    document.getElementById('stats').style.display = "none";
   }
 }
 
@@ -71,7 +84,7 @@ function createButton(id, dblClick = false) {
             }
             button.removeAttribute("data-dblclick");
           }, DBL_TAP_THRESH);
-        } else{
+        } else {
           button.removeAttribute("data-dblclick");
           // Action for double click
           button.style.border = '1px solid white'
@@ -86,8 +99,8 @@ function createButton(id, dblClick = false) {
   button.addEventListener(
     "touchend",
     function (e) {
-      if (dblClick){
-        if (button.getAttribute('btn-locked') == 1){
+      if (dblClick) {
+        if (button.getAttribute('btn-locked') == 1) {
           // Prevent button unpress if button is locked
           return;
         }
@@ -205,30 +218,52 @@ j2.addEventListener("joydiv-changed", function (e) {
 });
 
 
+function send_intro() {
+  sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: localStorage.getItem('username')});
+  document.getElementsByTagName("img")[0].style.filter =
+    "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
+  setTimeout(() => {
+    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+  }, 5000);
+    document.getElementById('alias').style.display = "none";
+}
+
+function savecbState(e){
+  localStorage.setItem('prompt-cb-val', e.checked | 0)
+}
+
+function stoppedTyping(e) {
+  document.getElementById('connect').disabled = !(e.value.length > 0)  // Only enable the connect button if textbox isn't empty
+  localStorage.setItem('username', document.getElementById('username').value)
+}
+
 // Initialize virtual controller
 if (isLocal) {
   // Press the xbox button to initialize the controller!
-  sock.emit("intro", { device: "x360", id: "x360", type: "x360" });
 
   sock.on("disconnect", () => {
     document.getElementsByTagName("img")[0].style.filter =
       "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
-      CONNECTED = false;
+    CONNECTED = false;
   });
   sock.on("connect", () => {
-    document.getElementsByTagName("img")[0].style.filter =
-      "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
     CONNECTED = true;
-    setTimeout(() => {
-      document.getElementsByTagName("img")[0].style.filter = "invert(0)";
-    }, 5000);
+    // Enable connect button, if the username is already stored (Maybe autoconnect in this case?)
+    document.getElementById('username').value = localStorage.getItem('username')
+    document.getElementsByClassName('username')[0].value = localStorage.getItem('username')
+    document.getElementById('connect').disabled = !(document.getElementById('username').value.length > 0)
   });
+
   // Prevent conext menu from popping up on long press
-  window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
-  
-  setTimeout(() =>{
-    if (CONNECTED == false){
-      conf[0].click();
-    }
-  }, 500);
+  window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+}
+
+
+window.onload = (ev) =>{
+  if (localStorage.getItem('prompt-cb-val')){
+    console.log(localStorage.getItem('prompt-cb-val'))
+    document.getElementsByClassName('prompt-cb')[0].checked = true
+    send_intro()
+  }
 }

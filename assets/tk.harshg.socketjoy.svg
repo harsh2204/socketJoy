@@ -1,0 +1,36 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient spreadMethod="pad" id="J_gradient" x1="10%" y1="93%" x2="10%" y2="10%">
+        <stop offset="0%" style="stop-color:rgb(152, 193, 217);stop-opacity:1;" />
+        <stop offset="46%" style="stop-color:rgb(41, 50, 65);stop-opacity:1;" />
+        <stop offset="47%" style="stop-color:rgb(224, 251, 252);stop-opacity:1;" />
+        <stop offset="100%" style="stop-color:rgb(238, 108, 77);stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient spreadMethod="pad" id="s_gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:rgb(61, 90, 128);stop-opacity:1;" />
+        <stop offset="37%" style="stop-color:rgb(152, 193, 217);stop-opacity:1;" />
+        <stop offset="73%" style="stop-color:rgb(224, 251, 252);stop-opacity:1;" />
+        <stop offset="80%" style="stop-color:rgb(238, 108, 77);stop-opacity:1;" />
+        <stop offset="100%" style="stop-color:rgb(41, 50, 65);stop-opacity:1;" />
+    </linearGradient>
+    <style>
+      .letter_J{
+        fill: url(#J_gradient);
+        stroke: #e0fbfc;
+        stroke-width: 10px;
+      }
+      .letter_s{
+        fill: url(#s_gradient);
+        stroke: #3d5a80;
+        stroke-width: 10px;
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="100%" height="100%" style="fill:#3a7170"/>
+  <svg preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+          <g transform="translate(0, 0)scale(0.5)">
+            <path id="s" class="letter_s" d="M162.2,214.833q4.812,9.26,4.814,16.107,0,18.7-25.735,18.7H119.8q-14.628,0-22.957,6.388t-8.331,17.681Q88.515,290,112.028,290h38.694q25.918,0,43.323-15.644t17.4-38.972q0-20.92-16.107-43.323l-10.553-14.626q-8.7-12.219-8.7-23.883a40.817,40.817,0,0,1,.741-7.221,48.689,48.689,0,0,0,1.111-7.22,14.674,14.674,0,0,0-5.184-11.2,17.792,17.792,0,0,0-12.4-4.721q-13.517,0-22.587,17.958l-24.623,49.988q-5.373,10.74-5.369,17.218,0,6.852,6.017,12.127a20.077,20.077,0,0,0,13.608,5.276q15,0,23.142-18.328l3.518-8.517Z" />
+            <path id="J" class="letter_J" d="M417.548,164.429q9.624-24.252,9.627-41.471,0-27.216-20.088-45.267T357.007,59.64q-40.918,0-71.279,30.085t-30.363,70.631q0,27.771,16.57,47.3t40.083,19.532q11.846,0,19.81-7.035a22.507,22.507,0,0,0,7.961-17.588q0-11.664-13.33-17.033-12.592-4.812-17.681-11.2t-5.091-17.126q0-19.808,14.718-36.1t32.678-16.292A28.25,28.25,0,0,1,369.6,111.2q7.776,6.387,7.776,15.089,0,10.183-11.108,38.139L323.126,271.81l-29.252.37q-55.359,0-86.83,17.589-24.812,13.885-38.324,35.639A88.268,88.268,0,0,0,155.2,372.9q0,34.248,23.05,57.208t57.486,22.957q36.471,0,60.911-23.235t46.841-79.7l13.7-34.065H393.48q16.107,0,25.179-6.943t9.071-19.162q0-18.143-25.549-18.144H374.6ZM296.1,342.534q-13.331,33.324-27.123,48.414t-31.011,15.089a30.394,30.394,0,0,1-22.957-10q-9.442-10-9.443-24.438,0-15.552,11.109-28.419t30.363-19.718q20.733-7.407,59.615-7.4Z"/>
+          </g>
+  </svg>
+</svg>
