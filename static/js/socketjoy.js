@@ -42,7 +42,7 @@ if (isLocal) {
 
   document.getElementById('alias').style.display = "none";
   setTimeout(() => {
-    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+    document.getElementById("icon-logo").style.filter = "invert(0)";
   }, 5000);
 }
 
@@ -225,10 +225,10 @@ j2.addEventListener("joydiv-changed", function (e) {
 
 function send_intro() {
   sock.emit("intro", { device: "x360", id: "x360", type: "x360", alias: localStorage.getItem('username')});
-  document.getElementsByTagName("img")[0].style.filter =
+  document.getElementById("icon-logo").style.filter =
     "invert(18%) sepia(88%) saturate(5119%) hue-rotate(112deg) brightness(93%) contrast(90%)";
   setTimeout(() => {
-    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+    document.getElementById("icon-logo").style.filter = "invert(0)";
   }, 5000);
     document.getElementById('alias').style.display = "none";
 }
@@ -247,7 +247,7 @@ if (isLocal) {
   // Press the xbox button to initialize the controller!
 
   sock.on("disconnect", () => {
-    document.getElementsByTagName("img")[0].style.filter =
+    document.getElementById("icon-logo").style.filter =
       "invert(29%) sepia(57%) saturate(7093%) hue-rotate(349deg) brightness(102%) contrast(70%)";
     CONNECTED = false;
   });

@@ -143,6 +143,8 @@ def main():
         '/static/js/joydiv.js': f'{app_path}/static/js/joydiv.js',
         '/static/css/style.css': f'{app_path}/static/css/style.css',
         '/socketjoy.svg':  {'filename': f'{app_path}/static/socketjoy.svg', 'content_type': 'image/svg+xml'},
+        '/static/socketjoy-logo.svg':  {'filename': f'{app_path}/static/socketjoy-logo.svg', 'content_type': 'image/svg+xml'},
+        '/favicon.ico':  f'{app_path}/static/favicon.ico',
         '/static/favicon.ico':  f'{app_path}/static/favicon.ico',
         '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
         '/static/gh-logo.png':  f'{app_path}/static/gh-logo.png',
@@ -152,7 +154,7 @@ def main():
 
     # create a Socket.IO server
     sio = socketio.Server(logger=args.debug, engineio_logger=args.debug, cors_allowed_origins='*',
-                                ping_timeout=500) # ping_timeout(s) controls how long devices stay connected 
+                                ping_timeout=500) # ping_timeout(s) controls how long devices stay connected
 
     app = socketio.WSGIApp(sio, static_files=static_files)
 
@@ -185,8 +187,8 @@ def main():
             device.close()
         sio.emit('controllers', [x.name for x in DEVICES.values()])
 
-    @sio.on('fetchstuff')
-    def send_controllers(sid):
+    @sio.on('fetch_lobby')
+    def send_lobbyinfo(sid):
         sio.emit('controllers', [x.name for x in DEVICES.values()])
         sio.emit('qrcode', {'qr' : qr_img.decode('utf-8'), 'ip' : serv_ip}, room=sid)
 
@@ -203,15 +205,10 @@ def main():
     serv_ip = f'http://{host}:{args.port}/' 
 
     logger.info(f'Listening on {serv_ip}')
-    # logger.info(f"Check {serv_ip}lobby for more info")
     webbrowser.open(f'{serv_ip}lobby')
 
     qr = qrcode.QRCode(box_size=20)
     qr.add_data(serv_ip)
-    if platform.system() == 'Windows':
-        import colorama
-        colorama.init()
-    # qr.print_ascii()
     qr_img = qr.make_image(fill_color="black", back_color="white", image_factory=qrcode.image.svg.SvgImage)
     qr_img = ElementTree.tostring(qr_img._img, encoding='UTF-8', method='xml')
 

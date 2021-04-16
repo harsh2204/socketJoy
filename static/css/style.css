@@ -15,6 +15,22 @@ body {
   overflow: hidden;
 }
 
+.socketJoylogo {
+  position: absolute;
+  width: 100%;
+  height: 23%;
+  justify-content: center;
+  background-color:#2C394A;
+  box-shadow: 0px 0px 20px 2px white;
+  top: 10%;
+}
+.socketJoylogo > img {
+  /* transform: scale(0.5) */
+  /* max-width: 80%;
+  height: 40vh; */
+  margin-left: -5px;
+}
+
 .small {
   font-size: 10px;
 }
@@ -219,7 +235,7 @@ body {
   border: 1px solid black;
   border-radius: 8px;
   font-size: medium;
-  vertical-align: midde;
+  vertical-align: middle;
 }
 #back-button {
   position: relative;
@@ -381,10 +397,12 @@ body {
 /* blessed from https://code-boxx.com/lock-screen-orientation/ */
 @media only screen and (orientation:portrait){
   #turn{ display:block; }
+  #logo{ display:block; }
   .container{ display:none; }
 }
 @media only screen and (orientation:landscape){
   #turn{ display:none; }
+  #logo{ display:none; }
   .container{ display:flex; }
 }
 
