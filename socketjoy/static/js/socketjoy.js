@@ -36,6 +36,7 @@ if (isLocal) {
   });
 } else {
   // Notify user that this is a demo only
+  document.getElementById('alias').style.display = "none";
   var demo = document.getElementById('demo');
   demo.style.display = 'block';
   document.title = "socketJoy Demo";
