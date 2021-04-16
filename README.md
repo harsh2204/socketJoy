@@ -55,7 +55,8 @@ python app.py
 # Run python app.py --help for more info 
 ```
 
-#### Building the AppImage binary file (Optional)
+---
+### Building the binary file (Optional)
 
 Install pyinstaller
 ```
@@ -63,12 +64,20 @@ pip install pyinstaller
 pyinstaller --version
 ```
 
+**Windows**
+
+Note - You may need to install Visual Studio Runtime 2015 to build the executable.
+
+```
+pyinstaller --noconfirm --clean 
+```
+
+The `socketjoy.exe` file will be placed in `dist/`.
+
+**Linux**
+
 **!** Install `appimagetool` using your distro's package manager
 
 You can now run `linux_build.sh` to start the build and packaging process.
 
 The AppImage binary will be placed in `dist/socketJoy.AppImage`. This is a portable binary that should work on other machines with the same architecture as your machine.
-
-## **Credits**
-* [joydiv](https://github.com/qbolec/Joydiv) 
-* [j2dx](https://github.com/OzymandiasTheGreat/Joy2DroidX-server/)
