@@ -30,7 +30,7 @@ if (isLocal) {
   }, 10000);
 
 
-  sock.emit("fetchstuff");
+  sock.emit("fetch_lobby");
   sock.on("qrcode", (data) => {
       document.getElementById("qrcode").innerHTML = data.qr
   });
