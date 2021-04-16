@@ -36,10 +36,14 @@ if (isLocal) {
   });
 } else {
   // Notify user that this is a demo only
-  document.getElementById('alias').style.display = "none";
   var demo = document.getElementById('demo');
   demo.style.display = 'block';
   document.title = "socketJoy Demo";
+
+  document.getElementById('alias').style.display = "none";
+  setTimeout(() => {
+    document.getElementsByTagName("img")[0].style.filter = "invert(0)";
+  }, 5000);
 }
 
 var conf = document.getElementsByClassName('configure')
