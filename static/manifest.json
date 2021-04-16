@@ -1,0 +1,19 @@
+{
+  "short_name": "socketJoy",
+  "name": "socketJoy : Virtual Smartphone Controller using WebSockets",
+  "icons": [
+    {
+      "src": "/socketjoy.svg",
+      "sizes":"256x256",
+      "purpose": "any maskable"
+    }
+  ],
+  "background_color": "#5A717A",
+  "display": "standalone",
+  "start_url": "./",
+  "scope": ".",
+  "orientation": "landscape",
+  "theme_color": "#2f4f4f",
+  "description": "Turn your smartphone into virtual gamepad for your PC",
+  "display_override": ["window-control-overlay", "minimal-ui"]
+}
