@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 import platform
+import webbrowser
 import socket
 from argparse import ArgumentParser
 import qrcode
@@ -146,6 +147,7 @@ def main():
         '/static/qrcode.ico':  f'{app_path}/static/qrcode.ico',
         '/static/gh-logo.png':  f'{app_path}/static/gh-logo.png',
         '/manifest.json':  f'{app_path}/static/manifest.json',
+        '/static/js/socketjoy.js': f'{app_path}/static/js/socketjoy.js',
     }
 
     # create a Socket.IO server
@@ -201,7 +203,8 @@ def main():
     serv_ip = f'http://{host}:{args.port}/' 
 
     logger.info(f'Listening on {serv_ip}')
-    logger.info(f"Check {serv_ip}lobby for more info")
+    # logger.info(f"Check {serv_ip}lobby for more info")
+    webbrowser.open(f'{serv_ip}lobby')
 
     qr = qrcode.QRCode(box_size=20)
     qr.add_data(serv_ip)
