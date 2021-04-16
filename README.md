@@ -3,7 +3,6 @@ Use your smartphone as a virtual xbox controller for your PC!
 
 
 ![socketJoy-logo](./assets/controller-mockup.png)
-OR
 
 Checkout the frontend demo [here](https://gamepad.harshgupta.dev)
 
