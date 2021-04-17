@@ -16,7 +16,7 @@ _**Required**_: Run the executable with `--setup` flag in a terminal to complete
 
 Once the setup is done, you can run the executable by either simply double clicking it or running it from a terminal.
 
-To the run the server in debug mode, run the executable in a terminal with `-d` flag.
+For more information, see `--help` flag.
 
 ---
 
@@ -45,7 +45,7 @@ Install the python dependencies
 pip install -r socketjoy/requirements.txt
 ```
 
-At this point you can try to run the server
+We must run the socketjoy setup and the server itself using the following commands.
 
 ```
 cd socketjoy/
@@ -74,7 +74,7 @@ pyinstaller --version
 Note - You may need to install Visual Studio Runtime 2015 to build the executable.
 
 ```
-pyinstaller --noconfirm --clean 
+pyinstaller --noconfirm --clean socketjoy.spec
 ```
 
 The `socketjoy.exe` file will be placed in `dist/`.
