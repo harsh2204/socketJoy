@@ -4,6 +4,7 @@ from pathlib import Path
 import platform
 from PyInstaller.utils.hooks import collect_submodules
 
+DEBUG = False
 
 APP = 'socketjoy'
 block_cipher = None
@@ -59,7 +60,7 @@ if platform.system() == 'Linux':
             [],
             exclude_binaries=True,
             name=APP,
-            debug=False,
+            debug=DEBUG,
             bootloader_ignore_signals=False,
             strip=False,
             upx=True,
@@ -97,7 +98,7 @@ else:
         [f'{APP}/app.py'],
         pathex=[Path.cwd()],
         binaries=windows_data,
-        datas=[],
+        datas=static_files,
         hiddenimports=hidden_imports,
         hookspath=[],
         runtime_hooks=[],
@@ -120,7 +121,7 @@ else:
         a.datas,
         [],
         name=APP,
-        debug=False,
+        debug=DEBUG,
         bootloader_ignore_signals=False,
         strip=False,
         upx=True,
