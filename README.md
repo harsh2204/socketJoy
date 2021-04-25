@@ -12,7 +12,7 @@ Checkout the frontend demo [here](https://gamepad.harshgupta.dev)
 
 Download one of the pre-built binaries for your desired platform from [releases](https://github.com/harsh2204/socketjoy/releases/). 
 
-_**Required**_: Run the executable with `--setup` flag in a terminal to complete the setup process. 
+_**Required**_: Run the executable with `--setup` flag in a terminal to complete the setup process. This requires elevated system priviliges before running.
 
 Once the setup is done, you can run the executable by either simply double clicking it or running it from a terminal.
 
